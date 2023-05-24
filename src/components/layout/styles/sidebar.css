@@ -1,0 +1,27 @@
+.sidebar{
+    width: 220px;
+}
+
+.list-group a:hover{
+    background-color: #CFD4ED;
+    color: #151515;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.list-group a{
+    color: #8A8A8A;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.logo{
+    margin-left: 2.5vh;
+}
