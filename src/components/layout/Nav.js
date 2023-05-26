@@ -1,8 +1,8 @@
 import React from "react";
-import 'bootstrap/js/dist/dropdown';
 import { FaUserCircle } from 'react-icons/fa';
+import 'bootstrap/js/dist/dropdown';
 
-function Nav({Toggle}) {
+function Nav({ Toggle }) {
   return (
     <nav className="navbar navbar-expand-sm navbar-white bg-white px-3">
       <i className="navbar-brand bi bi-justify-left fs-5" onClick={Toggle}></i>
@@ -23,9 +23,10 @@ function Nav({Toggle}) {
               type="text"
               placeholder=""
               style={{
-                backgroundImage: `url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%23333" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>')`,
+                backgroundImage: `url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="%23333" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"><circle cx="10" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>')`,
                 backgroundRepeat: "no-repeat",
-                backgroundPosition: "8px 8px",
+                backgroundPosition: "4px 4px",
+                backgroundSize: "16px",
                 paddingLeft: "35px"
               }}
             />
@@ -36,6 +37,9 @@ function Nav({Toggle}) {
           >
             Search
           </button>
+          <div className="d-flex align-items-center ms-2">
+            <FaUserCircle size={24} />
+          </div>
         </form>
         <ul className="navbar-nav mt-2 mt-lg-0">
           <li className="nav-item dropdown">
