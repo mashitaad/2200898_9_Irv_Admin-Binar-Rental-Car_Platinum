@@ -4,6 +4,7 @@ import logo from '../../assets/icons/logo.png'
 
 function Sidebar(){
     return(
+        <>
         <div className="bg-white sidebar p-2">
             <div className="logo">
                 <img src={logo} alt="logo" />
@@ -18,6 +19,8 @@ function Sidebar(){
                 </a>
             </div>
         </div>
+       
+        </>
     )
 }
 
