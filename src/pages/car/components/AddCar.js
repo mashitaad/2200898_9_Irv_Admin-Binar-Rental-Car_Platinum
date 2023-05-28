@@ -4,9 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useDropzone } from "react-dropzone";
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import fiUpload from "../../../assets/icons/fi_upload.png";
+import React, { useState, useCallback } from "react";
 
 const AddCar = (props) => {
   const [previewImage, setPreviewImage] = useState(null);
@@ -19,12 +17,8 @@ const AddCar = (props) => {
   }, []);
 
   const {
-    acceptedFiles,
     getRootProps,
     getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject,
   } = useDropzone({ onDrop });
 
   const handleClickConfirmation = (e) => {
