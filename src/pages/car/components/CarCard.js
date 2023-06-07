@@ -29,8 +29,9 @@ const CarCard = ({ car }) => {
           <Card.Text>
             <BsPeople className="mb-1 me-1" /> {getCategoryText(car.category)}
           </Card.Text>
-          <IoMdTime /> Updated at {formatDate(car.updatedAt)}
-          <Card.Text></Card.Text>
+          <Card.Text>
+            <IoMdTime /> Updated at {formatDate(car.updatedAt)}
+          </Card.Text>
           <div className="row justify-content-between">
             <div className="col-md-6">
               <Button className="w-100" variant="outline-danger">
