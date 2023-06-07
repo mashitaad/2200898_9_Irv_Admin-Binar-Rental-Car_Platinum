@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { BsPeople } from "react-icons/bs";
+import { IoMdTime } from "react-icons/io";
 import { format } from "date-fns";
 
 const CarCard = ({ car }) => {
@@ -28,7 +29,8 @@ const CarCard = ({ car }) => {
           <Card.Text>
             <BsPeople className="mb-1 me-1" /> {getCategoryText(car.category)}
           </Card.Text>
-          <Card.Text>Updated at {formatDate(car.updatedAt)}</Card.Text>
+          <IoMdTime /> Updated at {formatDate(car.updatedAt)}
+          <Card.Text></Card.Text>
           <div className="row justify-content-between">
             <div className="col-md-6">
               <Button className="w-100" variant="outline-danger">

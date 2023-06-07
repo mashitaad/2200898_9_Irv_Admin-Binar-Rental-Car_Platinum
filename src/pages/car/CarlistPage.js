@@ -6,7 +6,6 @@ import axios from "axios";
 import { Row } from "react-bootstrap";
 
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/customer/v2/car";
-const PAGE_LIMIT = 10;
 
 const CarlistPage = () => {
   const [carCategory, setCarCategory] = useState(null);
