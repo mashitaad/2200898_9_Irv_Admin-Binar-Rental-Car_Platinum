@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import logo from '../../../assets/icons/logo.png';
+import logo from '../../../../assets/icons/logo.png';
 import Button from 'react-bootstrap/Button';
 
-const SignIn = () => {
+const SignIn = (props) => {
+  
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  })
+
   return (
     <>
       <div className='container'>
@@ -55,12 +61,23 @@ const SignIn = () => {
             >
               Welcome, Admin BCR!
             </h3>
-            <Form>
+            <Form onSubmit={(e => {
+              e.preventDefault()
+              props.onSubmit(form)
+            })}>
               <Form.Group className="mb-3 col-lg-8" controlId="formBasicEmail">
+                {props.message && (
+                  <div className="alert alert-danger" role="alert">
+                    {props.message}
+                  </div>
+                )}
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
                   name='email'
+                  onChange={e => setForm({
+                    ...form, ...{ email: e.target.value }
+                  })}
                   placeholder="Contoh: johndee@gmail.com"
                 />
               </Form.Group>
@@ -70,6 +87,9 @@ const SignIn = () => {
                 <Form.Control
                   type="password"
                   name='password'
+                  onChange={e => setForm({
+                    ...form, ...{ password: e.target.value }
+                  })}
                   placeholder="6+ karakter"
                 />
               </Form.Group>
@@ -100,3 +120,7 @@ const SignIn = () => {
 }
 
 export default SignIn;
+
+SignIn.defaultProps = {
+  onSubmit: () => { }
+}

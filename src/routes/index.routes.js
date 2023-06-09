@@ -9,7 +9,7 @@ import Mainmenu from "../components/layout/Mainmenu";
 import CarlistPage from "../pages/car/CarlistPage";
 import AddCarPage from "../pages/car/AddCarPage";
 import UpdateCarPage from "../pages/car/UpdateCarPage";
-import SignIn from "../pages/auth/signin/SignIn";
+import SignInPage from "../pages/auth/signin/SignInPage";
 
 function IndexRoutes() {
 
@@ -24,7 +24,7 @@ function IndexRoutes() {
         <Router>
 
             <Routes>
-                <Route path="/signin" element={<SignIn />} />
+                <Route path="/signin" element={<SignInPage />} />
             </Routes>
 
             {window.location.pathname !== '/signin' && (
