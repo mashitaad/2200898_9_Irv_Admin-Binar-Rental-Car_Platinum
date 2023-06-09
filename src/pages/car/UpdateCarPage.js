@@ -1,7 +1,12 @@
 import React from 'react'
+import Overlayers from '../../components/layout/Overlayers'
 
 export default function UpdateCarPage() {
   return (
-    <div>UpdateCarPage</div>
+    <>
+      <Overlayers>
+        <div>UpdateCarPage</div>
+      </Overlayers>
+    </>
   )
 }

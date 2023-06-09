@@ -10,6 +10,7 @@ import CarlistPage from "../pages/car/CarlistPage";
 import AddCarPage from "../pages/car/AddCarPage";
 import UpdateCarPage from "../pages/car/UpdateCarPage";
 import SignIn from "../pages/auth/signin/SignIn";
+import Overlayers from "../components/layout/Overlayers";
 
 function IndexRoutes() {
 
@@ -23,37 +24,15 @@ function IndexRoutes() {
     return (
         <Router>
 
+         
             <Routes>
-                <Route path="/signin" element={<SignIn />} />
+                <Route path="/test" element={<Overlayers />} />
+                <Route path="/" element={<DashboardPage />} />
+                <Route path="/admin/car/list" element={<CarlistPage />} />
+                <Route path="/admin/add/car" element={<AddCarPage />} />
+                <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
+
             </Routes>
-
-            {window.location.pathname !== '/signin' && (
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className={`col-2 ${toggle ? "position-fixed" : ""} p-0`}>
-                            <Mainmenu />
-                        </div>
-                        <div className={`col ${toggle ? "offset-1" : ""}`}>
-                            <div className="d-flex">
-                                {toggle && <Sidebar />}
-                                <div className={`flex-grow-1 ${toggle ? "ps-3" : ""}`}>
-                                    <Header Toggle={Toggle} />
-
-                                    <div className="admin-main-content">
-                                        <Routes>
-                                            <Route path="/" element={<DashboardPage />} />
-                                            <Route path="/admin/car/list" element={<CarlistPage />} />
-                                            <Route path="/admin/add/car" element={<AddCarPage />} />
-                                            <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
-                                        </Routes>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
- 
 
 
         </Router>
