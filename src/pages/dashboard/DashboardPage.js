@@ -1,16 +1,15 @@
 import React from 'react'
 import Chart from './components/chart/Chart'
 import ListOrderTable from './components/list-order/ListOrderTable'
-import Overlayers from '../../components/layout/Overlayers'
+import SideBar from '../../components/layout/SideBar'
 
 export default function DashboardPage() {
   return (
     <>
-    <Overlayers>
-    <Chart />
-    <ListOrderTable />
-
-    </Overlayers>
+      <SideBar>
+        <Chart />
+        <ListOrderTable />
+      </SideBar>
     </>
   )
 }

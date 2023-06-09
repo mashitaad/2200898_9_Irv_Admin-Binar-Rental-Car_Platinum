@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Row } from "react-bootstrap";
 import config from '../../config/index'
-import Overlayers from "../../components/layout/Overlayers";
+import Overlayers from "../../components/layout/SideBar";
 
 const CarlistPage = () => {
   const [carCategory, setCarCategory] = useState(null);

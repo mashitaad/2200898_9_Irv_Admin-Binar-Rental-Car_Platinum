@@ -1,5 +1,5 @@
 import React from 'react'
-import Overlayers from '../../components/layout/Overlayers'
+import Overlayers from '../../components/layout/SideBar'
 
 export default function UpdateCarPage() {
   return (
