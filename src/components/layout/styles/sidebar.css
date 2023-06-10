@@ -12,9 +12,10 @@
 .nav-ant .brand-cat {
     width: 150px;
 }
+
 .nav-ant .ant-container {
     padding: 0 8rem;
-    justify-content: unset;
+    justify-content: flex-start !important;
 }
 .nav-ant .ant-brand {
     width: 15%;
@@ -105,3 +106,6 @@
     background-color: #CFD4ED;
     color: black;
   }
+.dropdown-admin {
+    padding-left: 28px;
+}

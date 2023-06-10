@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import './styles/sidebar.css'
-import { Button } from 'react-bootstrap';
+import { Button, Form, Nav, NavDropdown } from 'react-bootstrap';
 import logo from '../../assets/icons/logo.png'
 import {
   FaUserAlt,
   FaRegChartBar,
 } from "react-icons/fa";
+
+import { RxHamburgerMenu } from "react-icons/rx"
 import { Link, NavLink } from "react-router-dom";
 
 const SideBar = ({ children }) => {
-  const [showSidenav, setShowSidenav] = useState(false);
   const [showCarSidenav, setShowCarSidenav] = useState(false);
   const [showOrderSidenav, setShowOrderSidenav] = useState(false);
   const [showDashboardSidenav, setShowDashboardSidenav] = useState(false);
@@ -18,6 +19,24 @@ const SideBar = ({ children }) => {
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
   };
+
+  const handleShowSidenav = () => {
+    if (showCarSidenav) {
+      setShowCarSidenav(!showCarSidenav);
+      setShowOrderSidenav(false);
+      setShowDashboardSidenav(false)
+    }
+    if (showDashboardSidenav) {
+      setShowDashboardSidenav(!showDashboardSidenav);
+      setShowCarSidenav(false);
+      setShowOrderSidenav(false)
+    }
+    if (showOrderSidenav) {
+      setShowOrderSidenav(!showOrderSidenav);
+      setShowCarSidenav(false);
+      setShowDashboardSidenav(false)
+    }
+  }
 
   const handleToggleCarSidenav = () => {
     setShowCarSidenav(!showCarSidenav);
@@ -43,10 +62,38 @@ const SideBar = ({ children }) => {
             <img src={logo} alt="brand" className="brand-cat img-fluid" />
           </div>
           <div className="d-flex ant-main-head align-items-center justify-content-between">
-            <Button className="btn ant-collapse" type="button" onClick={''}>
-              <i className="fa-solid fa-bars"></i>
-            </Button>
+            <RxHamburgerMenu
+              size={"35px"}
+              style={{ cursor: "pointer" }}
+              onClick={handleShowSidenav}
+            />
           </div>
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+
+
+          <div className='dropdown-admin'>
+
+            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
+
         </div>
       </nav>
 
@@ -92,7 +139,7 @@ const SideBar = ({ children }) => {
                 <div className="ant-siderside animate__animated" style={{ display: showCarSidenav ? 'block' : 'none', width: showCarSidenav ? '200px' : 'auto' }}>
                   <ul className="ant-list-clip">
                     <li>
-                        <p>Cars</p>
+                      <p>Cars</p>
                       <NavLink to={'/admin/car/list'}>
                         <li className={`side-menu-item ${activeMenu === 'List Car' ? 'active' : ''}`} onClick={() => handleMenuClick('List Car')}>
                           List Car
@@ -110,7 +157,7 @@ const SideBar = ({ children }) => {
                 <div className="ant-siderside animate__animated" style={{ display: showDashboardSidenav ? 'block' : 'none', width: showDashboardSidenav ? '200px' : 'auto' }}>
                   <ul className="ant-list-clip">
                     <li>
-                    <p>Dashboard</p>
+                      <p>Dashboard</p>
                       <NavLink to={'/'}>
                         <li className={`side-menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('Dashboard')}>
                           Dashboard

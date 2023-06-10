@@ -11,8 +11,6 @@ function IndexRoutes() {
 
     return (
         <Router>
-
-         
             <Routes>
                 <Route path="/signin" element={<SignInPage />} />
                 <Route path="/" element={<DashboardPage />} />
@@ -20,7 +18,6 @@ function IndexRoutes() {
                 <Route path="/admin/car/list" element={<CarlistPage />} />
                 <Route path="/admin/add/car" element={<AddCarPage />} />
                 <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
-
             </Routes>
 
 
