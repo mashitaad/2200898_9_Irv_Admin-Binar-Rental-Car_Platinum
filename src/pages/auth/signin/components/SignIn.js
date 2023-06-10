@@ -12,7 +12,7 @@ const SignIn = (props) => {
 
   return (
     <>
-      <div className='container'>
+      <div className=''>
         <section className='d-flex'>
           <div
             className='left_data'
@@ -21,23 +21,25 @@ const SignIn = (props) => {
               display: "flex",
               justifyContent: "flex-start",
               position: "relative",
-              marginLeft: "-80px",
+              height: "100vh",
+              overflow: "hidden",
             }}
           >
             <img
               src="./sign_img.png"
               alt=""
               style={{
-                height: "100vh",
+                height: "100%",
                 width: "auto",
                 maxWidth: "100%",
+                objectFit: "cover",
               }}
             />
           </div>
           <div
             className="right_data"
             style={{
-              flex: "0 0 60%",
+              flex: "0 0 40%",
               display: "flex",
               justifyContent: "center",
               flexDirection: "column",
@@ -50,7 +52,8 @@ const SignIn = (props) => {
               className="signup-logo"
               alt="logo"
             />
-            <h3 className='text-start mt-4 col-lg-6'
+            <h3
+              className='text-start mt-4 col-lg-6'
               style={{
                 fontFamily: 'Arial',
                 fontStyle: 'normal',
@@ -61,11 +64,16 @@ const SignIn = (props) => {
             >
               Welcome, Admin BCR!
             </h3>
-            <Form onSubmit={(e => {
-              e.preventDefault()
-              props.onSubmit(form)
-            })}>
-              <Form.Group className="mb-3 col-lg-8" controlId="formBasicEmail">
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                props.onSubmit(form);
+              }}
+            >
+              <Form.Group
+                className="mb-3 col-lg-8"
+                controlId="formBasicEmail"
+              >
                 {props.message && (
                   <div className="alert alert-danger" role="alert">
                     {props.message}
@@ -74,29 +82,32 @@ const SignIn = (props) => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
-                  name='email'
-                  onChange={e => setForm({
-                    ...form, ...{ email: e.target.value }
-                  })}
+                  name="email"
+                  onChange={(e) =>
+                    setForm({ ...form, ...{ email: e.target.value } })
+                  }
                   placeholder="Contoh: johndee@gmail.com"
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3 col-lg-8" controlId="formBasicPassword">
+              <Form.Group
+                className="mb-3 col-lg-8"
+                controlId="formBasicPassword"
+              >
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
-                  name='password'
-                  onChange={e => setForm({
-                    ...form, ...{ password: e.target.value }
-                  })}
+                  name="password"
+                  onChange={(e) =>
+                    setForm({ ...form, ...{ password: e.target.value } })
+                  }
                   placeholder="6+ karakter"
                 />
               </Form.Group>
 
               <Button
                 variant="primary"
-                className='col-lg-8 mt-3'
+                className="col-lg-8 mt-3"
                 style={{
                   background: "#0D28A6",
                   borderRadius: "2px",
@@ -122,5 +133,5 @@ const SignIn = (props) => {
 export default SignIn;
 
 SignIn.defaultProps = {
-  onSubmit: () => { }
-}
+  onSubmit: () => {},
+};
