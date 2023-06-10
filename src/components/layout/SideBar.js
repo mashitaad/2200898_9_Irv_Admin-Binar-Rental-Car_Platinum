@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/sidebar.css'
 import { Button, Form, Nav, NavDropdown } from 'react-bootstrap';
 import logo from '../../assets/icons/logo.png'
-import {
-  FaUserAlt,
-  FaRegChartBar,
-} from "react-icons/fa";
-
 import { RxHamburgerMenu } from "react-icons/rx"
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import jwtDecode from "jwt-decode";
+import Cookies from 'js-cookie';
 
 const SideBar = ({ children }) => {
   const [showCarSidenav, setShowCarSidenav] = useState(false);
@@ -54,6 +52,37 @@ const SideBar = ({ children }) => {
     setShowCarSidenav(false);
     setShowOrderSidenav(false)
   };
+
+
+  const [cookies] = useCookies(['token']);
+  const [user, setUser] = useState('')
+  const token = cookies.token
+
+  const navigate = useNavigate()
+
+  const splitEmail = (email) => {
+    const atIndex = email.indexOf('@');
+
+    if (atIndex !== -1) {
+      const username = email.substring(0, atIndex);
+      return username;
+    } else {
+      throw new Error('Email tidak valid');
+    }
+  }
+
+  useEffect(() => {
+
+    if (token) {
+      const tokenDecode = jwtDecode(token)
+      setUser(splitEmail(tokenDecode.email))
+    }
+  }, [])
+
+  const handdleLogout = () => {
+    Cookies.remove('token', { path: '/' })
+    navigate('/signin')
+  }
   return (
     <div className="overlayers">
       <nav className="navbar nav-ant">
@@ -81,16 +110,9 @@ const SideBar = ({ children }) => {
 
           <div className='dropdown-admin'>
 
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+            <NavDropdown title={user} id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1" onClick={handdleLogout}>logout</NavDropdown.Item>
+              
             </NavDropdown>
           </div>
 
