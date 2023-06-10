@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AdminGetAllOrder, orderSelector } from "../../../features/orderSlice";
 
 export default function IndexPayment() {
+    const dispacth = useDispatch()
+    const data = useSelector(orderSelector.selectOrder)
+    const [filter, setFilter] = useState({
+        sort: 'created_at:desc',
+        page: 1,
+        pageSize: 10,
+    })
+
+
+    useEffect(() => {
+        dispacth(AdminGetAllOrder(filter))
+    }, [])
+
+    console.log(data)
+
   return (
     <>
           <Tabs
