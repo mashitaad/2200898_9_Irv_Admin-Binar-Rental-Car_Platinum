@@ -22,6 +22,7 @@ const SignIn = (props) => {
               justifyContent: "flex-start",
               position: "relative",
               marginLeft: "-100px",
+              height: "100vh",
             }}
           >
             <img
