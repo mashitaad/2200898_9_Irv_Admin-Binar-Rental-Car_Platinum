@@ -44,10 +44,11 @@ const authSlice = createSlice({
   },
 });
 
-export const { actions: authActions, reducer: authReducer } = authSlice;
-
 export const authSelector = {
   selectToken: (state) => state.auth.data,
   loading: (state) => state.auth.loading,
   errorMessage: (state) => state.auth.errorMessage,
 };
+
+
+export default authSlice.reducer;
