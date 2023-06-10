@@ -4,6 +4,7 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import CarlistPage from "../pages/car/CarlistPage";
 import AddCarPage from "../pages/car/AddCarPage";
 import UpdateCarPage from "../pages/car/UpdateCarPage";
+import SignInPage from "../pages/auth/signin/SignInPage"
 import OrderPage from "../pages/order/OrderPage";
 
 function IndexRoutes() {
@@ -13,6 +14,7 @@ function IndexRoutes() {
 
          
             <Routes>
+                <Route path="/signin" element={<SignInPage />} />
                 <Route path="/" element={<DashboardPage />} />
                 <Route path="/admin/order" element={<OrderPage />} />
                 <Route path="/admin/car/list" element={<CarlistPage />} />
