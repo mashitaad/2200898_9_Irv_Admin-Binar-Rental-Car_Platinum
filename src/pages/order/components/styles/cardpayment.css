@@ -1,0 +1,26 @@
+.card-status-payment {
+    height: auto !important;
+    grid-gap: 0 !important;
+    margin-top: 7px !important;
+    }
+    
+    .card img.card-img-payment {
+        display: flex;
+        column-gap: 20px;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        margin-top: 0;
+    }
+    
+    .card-content-payment {
+            display: flex;
+        column-gap: 20px;
+        align-items: center;
+    }
+    
+    .payment-option-button {
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+    }

@@ -23,7 +23,7 @@ export const adminGetOrderById = createAsyncThunk("admin/order/id", async (id) =
 
 
 
-export const AdminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', async (params = {}) => {
+export const adminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', async (params = {}) => {
     const token= document.cookie
         .split('; ')
         .find((row) => row.startsWith('token='))
@@ -84,7 +84,7 @@ const orderSlice = createSlice({
             .addCase(adminGetOrderById.fulfilled, (state, action) => {
                 state.data = action.payload
             })
-            .addCase(AdminGetAllOrder.fulfilled, (state, action) => {
+            .addCase(adminGetAllOrder.fulfilled, (state, action) => {
                 state.data = action.payload
             })
     }

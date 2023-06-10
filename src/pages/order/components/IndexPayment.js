@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { AdminGetAllOrder, orderSelector } from "../../../features/orderSlice";
+import { adminGetAllOrder, orderSelector } from "../../../features/orderSlice";
+import { admingetAllCars, carSelectors } from "../../../features/carSlice";
+import AllpaymentStatus from "./payment-status/AllpaymentStatus";
 
 export default function IndexPayment() {
     const dispacth = useDispatch()
@@ -14,11 +16,13 @@ export default function IndexPayment() {
 
 
     useEffect(() => {
-        dispacth(AdminGetAllOrder(filter))
+        dispacth(adminGetAllOrder(filter))
     }, [])
 
-    console.log(data)
-
+   
+  
+// console.log(newDataOrders)
+// console.log(data)
   return (
     <>
           <Tabs
@@ -28,7 +32,7 @@ export default function IndexPayment() {
             justify
           >
             <Tab eventKey="payment-all" title="Semua">
-      
+              <AllpaymentStatus data = {data}  />
               </Tab>
             <Tab eventKey="payment-pending" title="Belum Bayar">
       
