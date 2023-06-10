@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Row } from "react-bootstrap";
 import config from '../../config/index'
-import Overlayers from "../../components/layout/SideBar";
+import SideBar from "../../components/layout/SideBar";
 
 const CarlistPage = () => {
   const [carCategory, setCarCategory] = useState(null);
@@ -53,7 +53,7 @@ const CarlistPage = () => {
 
   return (
     <>
-      <Overlayers>
+      <SideBar>
 
         <ButtonFilter handleClick={filterCategory} />
         <Row className="flex-wrap mt-3">
@@ -63,7 +63,7 @@ const CarlistPage = () => {
             <p>Tidak ada mobil yang tersedia.</p>
           )}
         </Row>
-      </Overlayers>
+      </SideBar>
     </>
   );
 };

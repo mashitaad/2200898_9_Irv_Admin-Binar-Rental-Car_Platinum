@@ -6,21 +6,22 @@ import AddCarPage from "../pages/car/AddCarPage";
 import UpdateCarPage from "../pages/car/UpdateCarPage";
 import SignInPage from "../pages/auth/signin/SignInPage"
 import OrderPage from "../pages/order/OrderPage";
+import PrivateRoutesAdmin from "../utils/PrivateRoutesAdmin";
 
 function IndexRoutes() {
 
     return (
         <Router>
-
-         
             <Routes>
                 <Route path="/signin" element={<SignInPage />} />
-                <Route path="/" element={<DashboardPage />} />
-                <Route path="/admin/order" element={<OrderPage />} />
-                <Route path="/admin/car/list" element={<CarlistPage />} />
-                <Route path="/admin/add/car" element={<AddCarPage />} />
-                <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
+                <Route element={<PrivateRoutesAdmin />}>
 
+                    <Route path="/" element={<DashboardPage />} />
+                    <Route path="/admin/order" element={<OrderPage />} />
+                    <Route path="/admin/car/list" element={<CarlistPage />} />
+                    <Route path="/admin/add/car" element={<AddCarPage />} />
+                    <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
+                </Route>
             </Routes>
 
 
