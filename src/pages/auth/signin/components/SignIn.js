@@ -12,7 +12,7 @@ const SignIn = (props) => {
 
   return (
     <>
-      <div className='container'>
+      <div className=''>
         <section className='d-flex'>
           <div
             className='left_data'
@@ -21,16 +21,15 @@ const SignIn = (props) => {
               display: "flex",
               justifyContent: "flex-start",
               position: "relative",
-              marginLeft: "-80px",
+              marginLeft: "-100px",
             }}
           >
             <img
               src="./sign_img.png"
               alt=""
               style={{
-                height: "100vh",
-                width: "auto",
                 maxWidth: "100%",
+                maxHeight: "100%",
               }}
             />
           </div>
