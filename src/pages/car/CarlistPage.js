@@ -4,12 +4,14 @@ import CarCard from "./components/CarCard";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Row } from "react-bootstrap";
-
-const API_URL = "https://bootcamp-rent-cars.herokuapp.com/customer/v2/car";
+import config from '../../config/index'
+import Overlayers from "../../components/layout/SideBar";
 
 const CarlistPage = () => {
   const [carCategory, setCarCategory] = useState(null);
   const [carList, setCarList] = useState([]);
+
+  const baseUrl = config.apiBaseUrl
 
   useEffect(() => {
     const fetchCarList = async () => {
@@ -23,7 +25,7 @@ const CarlistPage = () => {
         return;
       }
 
-      let url = API_URL;
+      let url = baseUrl + "/customer/v2/car"
       if (carCategory) {
         url += `?category=${carCategory}`;
       }
@@ -51,14 +53,17 @@ const CarlistPage = () => {
 
   return (
     <>
-      <ButtonFilter handleClick={filterCategory} />
-      <Row className="flex-wrap mt-3">
-        {carList.length > 0 ? (
-          carList.map((car) => <CarCard key={car.id} car={car} />)
-        ) : (
-          <p>Tidak ada mobil yang tersedia.</p>
-        )}
-      </Row>
+      <Overlayers>
+
+        <ButtonFilter handleClick={filterCategory} />
+        <Row className="flex-wrap mt-3">
+          {carList.length > 0 ? (
+            carList.map((car) => <CarCard key={car.id} car={car} />)
+          ) : (
+            <p>Tidak ada mobil yang tersedia.</p>
+          )}
+        </Row>
+      </Overlayers>
     </>
   );
 };
