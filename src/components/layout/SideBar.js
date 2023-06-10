@@ -7,6 +7,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import jwtDecode from "jwt-decode";
 import Cookies from 'js-cookie';
+import {FiHome} from 'react-icons/fi'
+import {BsFillCarFrontFill} from 'react-icons/bs'
+import {FaCashRegister} from 'react-icons/fa'
+import {BiLogOut} from 'react-icons/bi'
 
 const SideBar = ({ children }) => {
   const [showCarSidenav, setShowCarSidenav] = useState(false);
@@ -111,7 +115,7 @@ const SideBar = ({ children }) => {
           <div className='dropdown-admin'>
 
             <NavDropdown title={user} id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1" onClick={handdleLogout}>logout</NavDropdown.Item>
+              <NavDropdown.Item  onClick={handdleLogout}>logout <BiLogOut/></NavDropdown.Item>
               
             </NavDropdown>
           </div>
@@ -123,13 +127,13 @@ const SideBar = ({ children }) => {
         <img src={logo} alt="brand little" className="ant-little-brand img-fluid" />
         <ul className="ant-list-clip">
           <li>
-            <a href="#" onClick={handleDashboardToggleSidenav}><i className="fa-solid fa-user"></i> Dashboard</a>
+            <a href="#" onClick={handleDashboardToggleSidenav}><FiHome size={"20px"}/> Dashboard</a>
           </li>
           <li>
-            <a href="#" onClick={handleToggleCarSidenav}><i className="fa-solid fa-house"></i> car</a>
+            <a href="#" onClick={handleToggleCarSidenav}><BsFillCarFrontFill size={"20px"} /> car</a>
           </li>
           <li>
-            <a href="#" onClick={handleOrderToggleSidenav}><i className="fa-solid fa-user"></i> order</a>
+            <a href="#" onClick={handleOrderToggleSidenav}><FaCashRegister size={"20px"}/> order</a>
           </li>
         </ul>
       </div>
