@@ -17,10 +17,10 @@ export default function AllpaymentStatus(props) {
         minimumFractionDigits: 0
       });
 
-      console.log(props.data?.orders)
+  
   return (
    <>
-   {props.data?.orders?.map(o => (
+   {props.data?.map(o => (
         <Card className='card-status-payment' key={o.id}>
           <Card.Header>
             {!o.status && !o.slip ? "BELUM BAYAR" :
