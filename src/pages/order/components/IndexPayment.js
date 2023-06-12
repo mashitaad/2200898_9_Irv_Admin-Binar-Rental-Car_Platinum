@@ -11,7 +11,7 @@ export default function IndexPayment() {
     const [filter, setFilter] = useState({
         sort: 'created_at:desc',
         page: 1,
-        pageSize: 10,
+        pageSize: 100,
     })
 
 
@@ -19,10 +19,6 @@ export default function IndexPayment() {
         dispacth(adminGetAllOrder(filter))
     }, [])
 
-   
-  
-// console.log(newDataOrders)
-// console.log(data)
   return (
     <>
           <Tabs
@@ -35,7 +31,7 @@ export default function IndexPayment() {
               <AllpaymentStatus data = {data}  />
               </Tab>
             <Tab eventKey="payment-pending" title="Belum Bayar">
-      
+
             </Tab>
             <Tab eventKey="payemnt-onprocces" title="Perlu di Proses">
       
