@@ -53,6 +53,7 @@ export default function AllpaymentStatus(props) {
                   <h5>tanggal Sewa {moment(o?.start_rent_at).format('DD MMMM YYYY')}</h5>
                   <h5>tanggal berakhir sewa {moment(o?.finish_rent_at).format('DD MMMM YYYY')}</h5>
                   <p>No pesanan: {o.id}</p>
+                  <p>Pemesan: {o.User?.email}</p>
                 </div>
               </div>
               <div className='col-md-3'>

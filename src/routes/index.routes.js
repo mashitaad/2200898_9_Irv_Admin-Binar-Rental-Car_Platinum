@@ -13,10 +13,10 @@ function IndexRoutes() {
     return (
         <Router>
             <Routes>
-                <Route path="/signin" element={<SignInPage />} />
+                <Route path="/" element={<SignInPage />} />
                 <Route element={<PrivateRoutesAdmin />}>
 
-                    <Route path="/" element={<DashboardPage />} />
+                    <Route path="/admin/dashboard" element={<DashboardPage />} />
                     <Route path="/admin/order" element={<OrderPage />} />
                     <Route path="/admin/car/list" element={<CarlistPage />} />
                     <Route path="/admin/add/car" element={<AddCarPage />} />
