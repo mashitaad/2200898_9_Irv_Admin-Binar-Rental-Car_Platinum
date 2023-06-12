@@ -25,7 +25,7 @@ const SiginInPage = () => {
       return;
     }
 
-    navigate('/');
+    navigate('/admin/dashboard');
   };
 
   return (
