@@ -7,6 +7,7 @@ import UpdateCarPage from "../pages/car/UpdateCarPage";
 import SignInPage from "../pages/auth/signin/SignInPage"
 import OrderPage from "../pages/order/OrderPage";
 import PrivateRoutesAdmin from "../utils/PrivateRoutesAdmin";
+import OrderDetailPage from "../pages/order/OrderDetailPage";
 
 function IndexRoutes() {
 
@@ -21,6 +22,7 @@ function IndexRoutes() {
                     <Route path="/admin/car/list" element={<CarlistPage />} />
                     <Route path="/admin/add/car" element={<AddCarPage />} />
                     <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
+                    <Route path="/admin/order/detail/:id" element={<OrderDetailPage />} />
                 </Route>
             </Routes>
 

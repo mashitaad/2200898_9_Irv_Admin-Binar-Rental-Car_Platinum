@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { adminGetAllOrder, orderSelector } from "../../../features/orderSlice";
+import { adminDeletOrderById, adminGetAllOrder, adminUpdateOrder, orderSelector } from "../../../features/orderSlice";
 import AllpaymentStatus from "./payment-status/AllpaymentStatus";
 import ReactPaginate from "react-paginate";
 import PendingPaymentStatus from "./payment-status/PendingPaymentStatus";
 import OnProcessPaymentStatus from "./payment-status/OnProcessPaymentStatus";
 import CompletedPaymentStatus from "./payment-status/CompletedPaymentStatus";
+import Swal from "sweetalert2";
 
 export default function IndexPayment() {
   const dispatch = useDispatch();
@@ -26,6 +27,53 @@ export default function IndexPayment() {
     dispatch(adminGetAllOrder(DEFAULT_FILTER));
   }, [dispatch]);
 
+  const handleDelete = (payload) => {
+    Swal.fire({
+      title: 'Apakah anda ingin membatalkan Pesanan ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(adminDeletOrderById(payload))
+     
+        Swal.fire(
+          'dikonfirmasi!',
+          'Pesanan Anda Berhasil dibatalkan.',
+          'success'
+        ).then(() => {
+          dispatch(adminGetAllOrder(DEFAULT_FILTER))
+        });
+      }
+    });
+  };
+
+
+  const handleConfirm = (payload) => {
+    Swal.fire({
+      title: 'Apakah anda ingin mengkonfirmasi Pesanan ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(adminUpdateOrder({ id: payload, params: { status: 1 } }))
+     
+        Swal.fire(
+          'dibatalkan!',
+          'Pesanan Anda Berhasil dikonfirmasi.',
+          'success'
+        ).then(() => {
+          dispatch(adminGetAllOrder(DEFAULT_FILTER))
+        });
+      }
+    });
+  };
+
 
   return (
     <div className="container">
@@ -37,13 +85,13 @@ export default function IndexPayment() {
         justify
       >
         <Tab eventKey="payment-all" title="Semua">
-          <AllpaymentStatus data={data} />
+          <AllpaymentStatus data={data} handleDelete = {handleDelete} handleConfirm = {handleConfirm} />
         </Tab>
         <Tab eventKey="payment-pending" title="Belum Bayar">
-          <PendingPaymentStatus data={filteredPendingOrder} />
+          <PendingPaymentStatus data={filteredPendingOrder} handleDelete = {handleDelete}/>
         </Tab>
         <Tab eventKey="payemnt-onprocces" title="Perlu Diproses">
-          <OnProcessPaymentStatus data = {filteredOnProcessOrder}/>
+          <OnProcessPaymentStatus data = {filteredOnProcessOrder} handleDelete = {handleDelete} handleConfirm = {handleConfirm}/>
         </Tab>
         <Tab eventKey="payment-finish" title="Selesai">
           <CompletedPaymentStatus data = {filteredCompletedOrder}/>

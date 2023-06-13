@@ -7,10 +7,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import jwtDecode from "jwt-decode";
 import Cookies from 'js-cookie';
-import {FiHome} from 'react-icons/fi'
-import {BsFillCarFrontFill} from 'react-icons/bs'
-import {FaCashRegister} from 'react-icons/fa'
-import {BiLogOut} from 'react-icons/bi'
+import { FiHome } from 'react-icons/fi'
+import { BsFillCarFrontFill } from 'react-icons/bs'
+import { FaCashRegister } from 'react-icons/fa'
+import { BiLogOut } from 'react-icons/bi'
 
 const SideBar = ({ children }) => {
   const [showCarSidenav, setShowCarSidenav] = useState(false);
@@ -85,7 +85,7 @@ const SideBar = ({ children }) => {
 
   const handdleLogout = () => {
     Cookies.remove('token', { path: '/' })
-    navigate('/signin')
+    navigate('/')
   }
   return (
     <div className="overlayers">
@@ -115,8 +115,8 @@ const SideBar = ({ children }) => {
           <div className='dropdown-admin'>
 
             <NavDropdown title={user} id="collasible-nav-dropdown">
-              <NavDropdown.Item  onClick={handdleLogout}>logout <BiLogOut/></NavDropdown.Item>
-              
+              <NavDropdown.Item onClick={handdleLogout}>logout <BiLogOut /></NavDropdown.Item>
+
             </NavDropdown>
           </div>
 
@@ -127,13 +127,13 @@ const SideBar = ({ children }) => {
         <img src={logo} alt="brand little" className="ant-little-brand img-fluid" />
         <ul className="ant-list-clip">
           <li>
-            <a href="#" onClick={handleDashboardToggleSidenav}><FiHome size={"20px"}/> Dashboard</a>
+            <a href="#" onClick={handleDashboardToggleSidenav}><FiHome size={"20px"} /> Dashboard</a>
           </li>
           <li>
             <a href="#" onClick={handleToggleCarSidenav}><BsFillCarFrontFill size={"20px"} /> car</a>
           </li>
           <li>
-            <a href="#" onClick={handleOrderToggleSidenav}><FaCashRegister size={"20px"}/> order</a>
+            <a href="#" onClick={handleOrderToggleSidenav}><FaCashRegister size={"20px"} /> order</a>
           </li>
         </ul>
       </div>
@@ -145,13 +145,13 @@ const SideBar = ({ children }) => {
               <div className="ant-siderside animate__animated" style={{ display: showOrderSidenav ? 'block' : 'none', width: showOrderSidenav ? '200px' : 'auto' }}>
                 <ul className="ant-list-clip">
                   <p>Order</p>
-                  <li>
-                    <NavLink to={'/admin/order'}>
-                      <li className={`side-menu-item ${activeMenu === 'Order' ? 'active' : ''}`} onClick={() => handleMenuClick('Order')}>
-                        Order
-                      </li>
-                    </NavLink>
-                  </li>
+
+                  <NavLink to={'/admin/order'}>
+                    <li className={`side-menu-item ${activeMenu === 'Order' ? 'active' : ''}`} onClick={() => handleMenuClick('Order')}>
+                      Order
+                    </li>
+                  </NavLink>
+
                 </ul>
               </div>
               <div className={` ${showOrderSidenav ? 'col ant-content' : 'ant-content-hide'}`}>
@@ -164,14 +164,14 @@ const SideBar = ({ children }) => {
               <>
                 <div className="ant-siderside animate__animated" style={{ display: showCarSidenav ? 'block' : 'none', width: showCarSidenav ? '200px' : 'auto' }}>
                   <ul className="ant-list-clip">
-                    <li>
-                      <p>Cars</p>
-                      <NavLink to={'/admin/car/list'}>
-                        <li className={`side-menu-item ${activeMenu === 'List Car' ? 'active' : ''}`} onClick={() => handleMenuClick('List Car')}>
-                          List Car
-                        </li>
-                      </NavLink>
-                    </li>
+
+                    <p>Cars</p>
+                    <NavLink to={'/admin/car/list'}>
+                      <li className={`side-menu-item ${activeMenu === 'List Car' ? 'active' : ''}`} onClick={() => handleMenuClick('List Car')}>
+                        List Car
+                      </li>
+                    </NavLink>
+
                   </ul>
                 </div>
                 <div className={` ${showCarSidenav ? 'col ant-content' : 'ant-content-hide'}`}>
@@ -182,14 +182,14 @@ const SideBar = ({ children }) => {
               <>
                 <div className="ant-siderside animate__animated" style={{ display: showDashboardSidenav ? 'block' : 'none', width: showDashboardSidenav ? '200px' : 'auto' }}>
                   <ul className="ant-list-clip">
-                    <li>
-                      <p>Dashboard</p>
-                      <NavLink to={'/'}>
-                        <li className={`side-menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('Dashboard')}>
-                          Dashboard
-                        </li>
-                      </NavLink>
-                    </li>
+
+                    <p>Dashboard</p>
+                    <NavLink to={'/admin/dashboard'}>
+                      <li className={`side-menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('Dashboard')}>
+                        Dashboard
+                      </li>
+                    </NavLink>
+
                   </ul>
                 </div>
                 <div className={` ${showDashboardSidenav ? 'col ant-content' : 'ant-content-hide'}`}>

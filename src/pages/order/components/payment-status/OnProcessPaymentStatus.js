@@ -83,9 +83,15 @@ export default function OnProcessPaymentStatus(props) {
                             <Link to={`/admin/order/detail/${o.id}`}>
                                 <Button variant="primary">Lihat Detail</Button>
                             </Link>
-                            <Link to={`/admin/order/detail/${o.id}`}>
-                                <Button variant="primary">konfirmasi pembayaran</Button>
-                            </Link>
+                            <Button
+                                variant="outline-success"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    props.handleConfirm(o.id)
+                                }}
+                            >
+                                Konfirmasi Pembayaran
+                            </Button>
                         </div>
 
                     </Card.Body>

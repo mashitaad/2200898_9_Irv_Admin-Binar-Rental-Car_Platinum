@@ -6,8 +6,6 @@ import '../styles/cardpayment.css'
 import 'moment/locale/id';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { adminGetAllOrder, orderSelector } from '../../../../features/orderSlice';
 import ReactPaginate from 'react-paginate';
 moment.locale('id')
 
@@ -103,9 +101,15 @@ export default function AllpaymentStatus(props) {
                   <Link to={`/admin/order/detail/${o.id}`}>
                     <Button variant="primary">Lihat Detail</Button>
                   </Link>
-                  <Link to={`/admin/order/detail/${o.id}`}>
-                    <Button variant="primary">konfirmasi pembayaran</Button>
-                  </Link>
+                  <Button
+                    variant="outline-success"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      props.handleConfirm(o.id)
+                    }}
+                  >
+                    Konfirmasi Pembayaran
+                  </Button>
                 </>
               }
               {
