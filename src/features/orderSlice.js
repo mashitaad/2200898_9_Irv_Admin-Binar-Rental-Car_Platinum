@@ -73,6 +73,9 @@ const orderSlice = createSlice({
     name: 'order',
     initialState: {
         data: {},
+        filteredPendingOrder : [],
+        filteredOnProccessOrder :[],
+        filteredCompletedOrder: [],
     },
     reducers: {
         setOrder: (state, action) => {
@@ -82,15 +85,22 @@ const orderSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(adminGetOrderById.fulfilled, (state, action) => {
-                state.data = action.payload
+                state.data = action.payload;
+               
             })
             .addCase(adminGetAllOrder.fulfilled, (state, action) => {
                 state.data = action.payload
+                state.filteredPendingOrder = action.payload.orders.filter(o => !o.status && !o.slip);
+                state.filteredOnProccessOrder = action.payload.orders.filter(o => !o.status && o.slip);
+                state.filteredCompletedOrder = action.payload.orders.filter(o => o.status && o.slip);
             })
     }
 })
 export const orderSelector = {
     selectOrder: (state) => state.order.data,
+    selectPendingOrder : (state) => state.order.filteredPendingOrder,
+    selectOnProcessOrder : (state) => state.order.filteredOnProccessOrder,
+    selectCompleted : (state) => state.order.filteredCompletedOrder
 }
 
 export default orderSlice.reducer
