@@ -6,8 +6,6 @@ import '../styles/cardpayment.css'
 import 'moment/locale/id';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { adminGetAllOrder, orderSelector } from '../../../../features/orderSlice';
 import ReactPaginate from 'react-paginate';
 moment.locale('id')
 

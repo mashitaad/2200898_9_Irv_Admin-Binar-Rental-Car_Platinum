@@ -81,7 +81,6 @@ export default function PendingPaymentStatus(props) {
                             {
                                 !o.status && !o.slip &&
                                 <>
-                                    <Button variant="primary">Bayar Sekarang</Button>
 
                                     <Button
                                         variant="outline-danger"
@@ -92,32 +91,12 @@ export default function PendingPaymentStatus(props) {
                                     >
                                         Tolak Pesanan
                                     </Button>
-                                    <Link to={`/order/detail/${o.id}`}>
+                                    <Link to={`/admin/order/detail/${o.id}`}>
                                         <Button variant="primary">Lihat Detail</Button>
                                     </Link>
                                 </>
                             }
-                            {
-                                !o.status && o.slip &&
-                                <Link to={`/order/detail/${o.id}`}>
-                                    <Button variant="primary">Lihat Detail</Button>
-                                </Link>
-                            }
-                            {
-                                o.status && o.slip &&
-
-                                <>
-                                    <Link to={`/payment/invoice/${o.id}`}>
-                                        <Button variant="primary">Donwload Slip</Button>
-                                    </Link>
-                                    <Link to={`/car/list/${o.CarId}`}>
-                                        <Button variant="primary">Sewa Lagi</Button>
-                                    </Link>
-                                    <Link to={`/order/detail/${o.id}`}>
-                                        <Button variant="primary">Lihat Detail</Button>
-                                    </Link>
-                                </>
-                            }
+                        
                         </div>
 
                     </Card.Body>

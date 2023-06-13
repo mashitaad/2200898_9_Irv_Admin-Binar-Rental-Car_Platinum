@@ -28,6 +28,29 @@ export const admingetAllCars = createAsyncThunk("car/getAllCars", async (params 
 })
 
 
+
+export const adminGetCarById = createAsyncThunk("car/getCar", async (id) => {
+    const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
+
+    const apiUrl = config.apiBaseUrl
+    try {
+        const response = await axios.get(apiUrl + `/admin/car/${id}`, {
+            headers: {
+                access_token: token
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+})
+
+
+
 const carSlice = createSlice({
     name: "car",
     initialState: {
@@ -44,6 +67,12 @@ const carSlice = createSlice({
             })
             .addCase(admingetAllCars.pending, (state, action) => {
                 state.loading = true
+            })
+            .addCase(adminGetCarById.fulfilled, (state, action) => {
+                state.data = action.payload
+            })
+            .addCase(adminGetCarById.pending, (state, action) => {
+                state.loading = false
             })
     }
 })

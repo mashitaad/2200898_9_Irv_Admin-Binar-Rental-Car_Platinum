@@ -40,7 +40,7 @@ export default function IndexPayment() {
         dispatch(adminDeletOrderById(payload))
      
         Swal.fire(
-          'dibatalkan!',
+          'dikonfirmasi!',
           'Pesanan Anda Berhasil dibatalkan.',
           'success'
         ).then(() => {
