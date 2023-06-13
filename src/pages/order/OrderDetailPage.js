@@ -136,8 +136,8 @@ export default function OrderDetailPage() {
                                 <div className="row mt-3">
                                     <div className="col-md-12"><label className="labels"><strong>Car/Type</strong></label>
                                         <p>{order?.Car?.name}</p>
-                                    </div
-                                    ><div className="col-md-12"><label className="labels"><strong>Status Pesanan</strong></label>
+                                    </div>
+                                    <div className="col-md-12"><label className="labels"><strong>Status Pesanan</strong></label>
                                         <p>{!order?.status && !order?.slip ? "Belum Bayar" :
                                             !order?.status && order?.slip ? "Sedang di Proses" : "selesai"
                                         }
@@ -161,28 +161,28 @@ export default function OrderDetailPage() {
                                 </div>
                                 <div className="row mt-3">
                                 </div>
-                                <div className="mt-5 text-center">
+                                <div className="mt-5 text-center order-detail-button">
                                     {
                                         !order?.status && !order?.slip &&
-                                        <Button variant='success' onClick={navigateBack}>Kembali</Button>
+                                        <Button variant='primary' onClick={navigateBack}>Kembali</Button>
                                     }
                                     {
                                         order?.status && order?.slip &&
-                                        <Button variant='success' onClick={navigateBack}>Kembali</Button>
+                                        <Button variant='primary' onClick={navigateBack}>Kembali</Button>
                                     }
                                     {
                                         !order?.status && order?.slip &&
                                         <>
-                                            <Button variant='success' onClick={navigateBack}>Kembali</Button>
+                                            <Button variant='primary' onClick={navigateBack}>Kembali</Button>
 
                                             <Button
-                                                variant="outline-danger"
+                                                variant="danger"
                                                 onClick={handleDeleteOrder}
                                             >
                                                 Tolak Pesanan
                                             </Button>
                                             <Button
-                                                variant="outline-success"
+                                                variant="success"
                                                 onClick={handleConfirm}
                                             >
                                                 Konfirmasi Pembayaran
