@@ -69,6 +69,28 @@ export const adminDeletOrderById = createAsyncThunk('order/admin/delete', async 
 });
 
 
+export const adminUpdateOrder = createAsyncThunk("order/admin/update", async ({ id, params }) => {
+    const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
+    const apiUrl = config.apiBaseUrl
+    try {
+        const response = await axios.patch(apiUrl + `/admin/order/${id}`,
+            params, {
+            headers: {
+                "content-type": "application/json",
+                access_token: token
+            }
+        })
+
+        return response.data
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
 const orderSlice = createSlice({
     name: 'order',
     initialState: {
@@ -76,6 +98,7 @@ const orderSlice = createSlice({
         filteredPendingOrder : [],
         filteredOnProccessOrder :[],
         filteredCompletedOrder: [],
+        loading: false
     },
     reducers: {
         setOrder: (state, action) => {
@@ -87,7 +110,16 @@ const orderSlice = createSlice({
             .addCase(adminGetOrderById.fulfilled, (state, action) => {
                 state.data = action.payload;
                
+            })  
+            .addCase(adminUpdateOrder.fulfilled, (state, action) => {
+                state.data = action.payload;
+               
             })
+            .addCase(adminUpdateOrder.pending, (state, action) => {
+                state.loading = true;
+               
+            })
+        
             .addCase(adminGetAllOrder.fulfilled, (state, action) => {
                 state.data = action.payload
                 state.filteredPendingOrder = action.payload.orders.filter(o => !o.status && !o.slip);

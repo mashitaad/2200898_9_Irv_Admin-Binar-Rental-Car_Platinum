@@ -90,7 +90,7 @@ export default function PendingPaymentStatus(props) {
                                             props.handleDelete(o.id)
                                         }}
                                     >
-                                        Batalkan Pesanan
+                                        Tolak Pesanan
                                     </Button>
                                     <Link to={`/order/detail/${o.id}`}>
                                         <Button variant="primary">Lihat Detail</Button>

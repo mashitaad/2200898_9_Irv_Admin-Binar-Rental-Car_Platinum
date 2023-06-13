@@ -86,7 +86,7 @@ const SignIn = (props) => {
                   onChange={(e) =>
                     setForm({ ...form, ...{ email: e.target.value } })
                   }
-                  placeholder="Contoh: johndee@gmail.com"
+                  placeholder="admin@bcr.io"
                 />
               </Form.Group>
 
