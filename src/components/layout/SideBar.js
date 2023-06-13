@@ -85,7 +85,7 @@ const SideBar = ({ children }) => {
 
   const handdleLogout = () => {
     Cookies.remove('token', { path: '/' })
-    navigate('/signin')
+    navigate('/')
   }
   return (
     <div className="overlayers">
