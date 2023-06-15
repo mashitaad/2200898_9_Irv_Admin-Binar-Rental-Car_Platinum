@@ -1,16 +1,16 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
-i
 import config from '../../../../config'
-import { useDispatch } from 'react-redux'
+import BasicTable from './BasicTable'
+import { format } from 'date-fns/esm'
+import { Button } from 'react-bootstrap'
+import axios from 'axios'
 
 const ListOrderTable = forwardRef((props, ref) => {
-  const apiUrl = config
+  const apiUrl = config.apiBaseUrl + "/admin/v2/order"
 
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
-  const dispatch = useDispatch();
-
-
+  
   const columns = useMemo(
     () => [
       {
@@ -60,27 +60,12 @@ const ListOrderTable = forwardRef((props, ref) => {
         Cell: ({ row }) => (
           <>
             <Button
-              variant="secondary"
-              size="sm"
-              className="me-2"
-              onClick={() => props.onDetail(row.original)}
-            >
-              Detail
-            </Button>
-            <Button
               variant="info"
               size="sm"
               className="me-2"
-              onClick={() => props.onEdit(row.original)}
+              onClick={() => props.onDetail(console.log(row.original.id))}
             >
-              Edit
-            </Button>
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={() => props.onDelete(row.original)}
-            >
-              Delete
+              Detail
             </Button>
           </>
         ),
@@ -134,17 +119,21 @@ const ListOrderTable = forwardRef((props, ref) => {
 
         if (sortBy && sortBy.length) {
           const orderByMapping = {
-            'Car.name': 'car',
-            'User.email': 'email',
+            'Car.name': 'car_name:asc',
+            'User.email': 'user_email:asc',
             'Car.category': 'category',
+            'start_rent_at' : 'start_rent_at:desc',
+            'finish_rent_at' :'finish_rent_atdesc:',
+            'total_price' : 'total_price:asc',
+            'createdAt' : 'createdAt:asc'
           };
-
-          const { id, desc } = sortBy[0];
-          params.orderBy = orderByMapping[id] || id;
-          params.order = desc ? 'DESC' : 'ASC';
+          const { id } = sortBy[0];
+          params.sort = orderByMapping[id] || id;
+        } else {
+          params.sort = 'created_at:desc'
         }
 
-        if (pageSize) params.record = pageSize
+        if (pageSize) params.pageSize = pageSize
         const token = document.cookie
           .split('; ')
           .find((row) => row.startsWith('token='))
@@ -164,7 +153,7 @@ const ListOrderTable = forwardRef((props, ref) => {
 
         setData(list)
         setTotalPage(data?.pageCount)
-        setTotalData(data?.Count)
+        setTotalData(data?.count)
 
 
 
