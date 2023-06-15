@@ -81,13 +81,13 @@
 .ant-content {
     background-color: #F4F5F7;
     padding: 4rem 2rem;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .ant-content-hide {
     background-color: #F4F5F7;
 	padding: 4rem 0rem 0rem 0rem;
-    height: 100vh;
+    min-height: 100vh;
 	padding-left: 8rem !important;
 }
 .ant-main-head {

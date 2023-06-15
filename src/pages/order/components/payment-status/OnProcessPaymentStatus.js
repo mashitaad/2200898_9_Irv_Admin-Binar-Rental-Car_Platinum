@@ -65,26 +65,36 @@ export default function OnProcessPaymentStatus(props) {
                                         </div>
                                     )
                                 }
-                                <div>
-                                    <h5>Nama/Type Mobil {o?.Car?.name} </h5>
-                                    <h5>tanggal Sewa {moment(o?.start_rent_at).format('DD MMMM YYYY')}</h5>
-                                    <h5>tanggal berakhir sewa {moment(o?.finish_rent_at).format('DD MMMM YYYY')}</h5>
-                                    <p>No pesanan: {o.id}</p>
-                                    <p>Pemesan: {o.User?.email}</p>
+                                <div className="col-md-5 border-right">
+                                    <div className="p-3">
+                                        <div className="row">
+                                            <div className="col-md-6"><label className="labels"><strong>Pemesan</strong></label> <p>{o?.User?.email}</p></div>
+                                            <div className="col-md-6"><label className="labels"><strong>No Pesanan</strong></label> <p> {o?.id} </p></div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6"><label className="labels"><strong>Car / Type</strong></label>
+                                                <p>{o?.Car?.name}</p>
+                                            </div><div className="col-md-6"><label className="labels"><strong>Total Bayar</strong></label>
+                                                <p>{formatter.format(o.total_price)}</p>
+                                            </div>
+                                            <div className="col-md-12"><label className="labels"><strong>Mulai sewa</strong></label>
+                                                <p>{moment(o?.start_rent_at).format('DD MMMM YYYY')}</p>
+                                            </div>
+                                            <div className="col-md-12"><label className="labels"><strong>Berakhir sewa</strong></label>
+                                                <p>{moment(o?.finish_rent_at).format('DD MMMM YYYY')}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className='col-md-3'>
-                                total bayar: {formatter.format(o.total_price)}
+                            <div className='col-md-3 mt-3'>
+                                <div className="col-md-6"><label className="labels"><strong>Tanggal order :</strong></label>  <p>{moment(o?.created_at).format('DD MMMM YYYY')}</p></div>
                             </div>
                         </div>
-
                         <div className='payment-option-button'>
 
-                            <Link to={`/admin/order/detail/${o.id}`}>
-                                <Button variant="primary">Lihat Detail</Button>
-                            </Link>
                             <Button
-                                variant="outline-success"
+                                variant="success"
                                 onClick={(e) => {
                                     e.preventDefault()
                                     props.handleConfirm(o.id)
@@ -92,6 +102,9 @@ export default function OnProcessPaymentStatus(props) {
                             >
                                 Konfirmasi Pembayaran
                             </Button>
+                            <Link to={`/admin/order/detail/${o.id}`}>
+                                <Button variant="info">Lihat Detail</Button>
+                            </Link>
                         </div>
 
                     </Card.Body>

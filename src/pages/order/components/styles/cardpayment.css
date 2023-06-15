@@ -24,3 +24,16 @@
         justify-content: end;
         gap: 15px;
     }
+
+    .order-detail-button {
+        display: flex;
+        column-gap: 10px;
+    }
+
+  .container-pagination {
+    justify-content: end;
+    display: flex;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+  
