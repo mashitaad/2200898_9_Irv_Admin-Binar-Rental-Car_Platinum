@@ -4,6 +4,7 @@ import BasicTable from './BasicTable'
 import { format } from 'date-fns/esm'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const ListOrderTable = forwardRef((props, ref) => {
   const apiUrl = config.apiBaseUrl + "/admin/v2/order"
@@ -59,14 +60,18 @@ const ListOrderTable = forwardRef((props, ref) => {
         accessor: 'birthDate',
         Cell: ({ row }) => (
           <>
+          <Link to={`/admin/order/detail/${row.original.id}`}>
             <Button
               variant="info"
               size="sm"
               className="me-2"
-              onClick={() => props.onDetail(console.log(row.original.id))}
+              // onClick={() => props.onDetail(console.log(row.original.id))}
             >
               Detail
             </Button>
+          
+          
+          </Link>
           </>
         ),
       },
