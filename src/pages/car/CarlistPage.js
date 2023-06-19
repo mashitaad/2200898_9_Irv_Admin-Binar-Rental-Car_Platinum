@@ -1,74 +1,65 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ButtonFilter from "./components/ButtonFilter";
 import CarCard from "./components/CarCard";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import { Row } from "react-bootstrap";
-import config from '../../config/index'
+import { Button, Row, Col } from "react-bootstrap";
+import { admingetAllCars, carSelectors } from "../../features/carSlice";
 import SideBar from "../../components/layout/SideBar";
+import LoadingSpiner from "../../components/ui/LoadingSpiner";
+import { BsPlusLg } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const CarlistPage = () => {
-  const [carCategory, setCarCategory] = useState(null);
-  const [carList, setCarList] = useState([]);
-
-  const baseUrl = config.apiBaseUrl
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const dispatch = useDispatch();
+  const loading = useSelector(carSelectors.loading);
+  const carList = useSelector(carSelectors.selectAllCars);
 
   useEffect(() => {
-    const fetchCarList = async () => {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY4NjExODEwNH0.BZISCbJMujXKAu7ndQro8cgSbMQbK3LwmEtL9yeHMQQ";
-      const decodedToken = jwt_decode(token);
-      const currentDate = new Date().getTime() / 1000;
-
-      if (decodedToken.exp < currentDate) {
-        console.log("Token expired");
-        return;
-      }
-
-      let url = baseUrl + "/customer/v2/car"
-      if (carCategory) {
-        url += `?category=${carCategory}`;
-      }
-
-      try {
-        const response = await axios.get(url, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setCarList(response.data.cars);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchCarList();
-  }, [carCategory]);
+    dispatch(admingetAllCars());
+  }, [dispatch]);
 
   const filterCategory = (payload) => {
-    setCarCategory(payload);
-    console.log(payload);
+    setSelectedCategory(payload);
+    dispatch(admingetAllCars({ category: payload }));
   };
 
   return (
     <>
-      <SideBar style={{ marginRight: '77px' }}>
-        <h1 style={{
-          fontFamily: 'Arial',
-          fontStyle: 'normal',
-          fontWeight: 700,
-          fontSize: '20px',
-          lineHeight: '30px',
-          color: '#000000',
-          marginBottom: '17px',
-        }}>List Car</h1>
-        <ButtonFilter handleClick={filterCategory} style={{ marginBottom: '24px' }} />
+      <SideBar style={{ marginRight: "77px" }}>
+        <Row className="justify-content-between">
+          <Col>
+            <h1
+              className="mb-3"
+              style={{
+                fontFamily: "Arial",
+                fontStyle: "normal",
+                fontWeight: 700,
+                fontSize: "20px",
+                lineHeight: "30px",
+                color: "#000000",
+              }}
+            >
+              List Car
+            </h1>
+          </Col>
+          <Col className="text-end">
+            <Link className="btn btn-sm btn-primary">
+              <BsPlusLg className="me-2 mb-1 text-light" />
+              Add New Car
+            </Link>
+          </Col>
+        </Row>
+        <ButtonFilter
+          handleClick={filterCategory}
+          style={{ marginBottom: "24px" }}
+        />
+
         <Row className="flex-wrap mt-3">
-          {carList.length > 0 ? (
-            carList.map((car) => <CarCard key={car.id} car={car} />)
+          {loading ? (
+            <LoadingSpiner />
           ) : (
-            <p>Tidak ada mobil yang tersedia.</p>
+            carList.map((car) => <CarCard key={car.id} car={car} />)
           )}
         </Row>
       </SideBar>
