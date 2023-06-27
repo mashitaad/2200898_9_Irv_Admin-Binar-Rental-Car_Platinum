@@ -3,6 +3,7 @@ import { Card, Col, Button } from "react-bootstrap";
 import { BsPeople } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { format } from "date-fns";
+import '../styles/carCard.css'
 
 const CarCard = ({ car }) => {
   const getCategoryText = (category) => {

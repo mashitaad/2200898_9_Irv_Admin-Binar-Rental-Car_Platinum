@@ -15,7 +15,7 @@ function IndexRoutes() {
         <Router>
             <Routes>
                 <Route path="/" element={<SignInPage />} />
-                <Route element={<PrivateRoutesAdmin />}>
+                {/* <Route element={<PrivateRoutesAdmin />}> */}
 
                     <Route path="/admin/dashboard" element={<DashboardPage />} />
                     <Route path="/admin/order" element={<OrderPage />} />
@@ -23,7 +23,7 @@ function IndexRoutes() {
                     <Route path="/admin/add/car" element={<AddCarPage />} />
                     <Route path="/admin/update/car/:id" element={<UpdateCarPage />} />
                     <Route path="/admin/order/detail/:id" element={<OrderDetailPage />} />
-                </Route>
+                {/* </Route> */}
             </Routes>
 
 
