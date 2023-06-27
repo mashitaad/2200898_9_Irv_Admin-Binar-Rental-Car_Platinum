@@ -65,7 +65,6 @@ const ListOrderTable = forwardRef((props, ref) => {
               variant="info"
               size="sm"
               className="me-2"
-              // onClick={() => props.onDetail(console.log(row.original.id))}
             >
               Detail
             </Button>

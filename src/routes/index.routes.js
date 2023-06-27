@@ -4,7 +4,7 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import CarlistPage from "../pages/car/CarlistPage";
 import AddCarPage from "../pages/car/AddCarPage";
 import UpdateCarPage from "../pages/car/UpdateCarPage";
-import SignInPage from "../pages/auth/signin/SignInPage"
+import SignInPage from "../pages/auth/signin/SignInPage";
 import OrderPage from "../pages/order/OrderPage";
 import PrivateRoutesAdmin from "../utils/PrivateRoutesAdmin";
 import OrderDetailPage from "../pages/order/OrderDetailPage";

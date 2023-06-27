@@ -1,0 +1,31 @@
+.card{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
+    height: 60vh !important;
+    padding: 20px !important;
+    margin-top: 55px !important;
+    grid-gap: 55px !important;
+}
+
+.card img {
+    height: 20vh ;
+    width: 100%;
+    object-fit: contain;
+    margin-top: 10%;
+}
+
+.card-text {
+    margin-left: 0% !important;
+    font-weight: 600;
+}
+
+.card a {
+    text-decoration: none !important;
+}
+
+  .active {
+    background: none !important;
+  }
+
+  .button-card {
+    padding-top: 50px;
+  }

@@ -55,13 +55,20 @@ const CarlistPage = () => {
           style={{ marginBottom: "24px" }}
         />
 
-        <Row className="flex-wrap mt-3">
+            
+        <div className="flex-wrap mt-3">
+          <div className="container-car">
+          <Row>
+
           {loading ? (
             <LoadingSpiner />
-          ) : (
-            carList.map((car) => <CarCard key={car.id} car={car} />)
-          )}
-        </Row>
+            ) : (
+              
+              carList.map((car) => <CarCard key={car.id} car={car} />)
+              )}
+              </Row>
+              </div>
+        </div>
       </SideBar>
     </>
   );
