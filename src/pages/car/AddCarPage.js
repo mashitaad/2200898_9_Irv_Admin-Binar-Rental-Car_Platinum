@@ -9,8 +9,14 @@ export default function AddCarPage() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 const handleAddCar = async (payload) => {
-  const response = await dispatch(adminAddCar(payload)).unwrap()
-  navigate('/admin/car/list')
+
+  try {
+    const response = await dispatch(adminAddCar(payload)).unwrap()
+    navigate('/admin/car/list')
+    
+  } catch (error) {
+    console.log(error)
+  }
 }
 
   return (

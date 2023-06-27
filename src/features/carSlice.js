@@ -19,7 +19,7 @@ export const admingetAllCars = createAsyncThunk(
           access_token: token,
         },
       });
-      return response.data.cars;
+      return response.data;
     } catch (error) {
       console.log(error);
       throw error;

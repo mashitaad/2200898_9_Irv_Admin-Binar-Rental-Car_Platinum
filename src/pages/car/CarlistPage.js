@@ -14,10 +14,10 @@ const CarlistPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector(carSelectors.loading);
   const carList = useSelector(carSelectors.selectAllCars);
-
+  console.log(carList)
   useEffect(() => {
     dispatch(admingetAllCars());
-  }, [dispatch]);
+  }, []);
 
   const filterCategory = (payload) => {
     setSelectedCategory(payload);
@@ -64,7 +64,7 @@ const CarlistPage = () => {
             <LoadingSpiner />
             ) : (
               
-              carList.map((car) => <CarCard key={car.id} car={car} />)
+              carList?.cars?.map((car) => <CarCard key={car.id} car={car} />)
               )}
               </Row>
               </div>
