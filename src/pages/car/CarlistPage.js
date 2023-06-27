@@ -14,9 +14,9 @@ const CarlistPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector(carSelectors.loading);
   const carList = useSelector(carSelectors.selectAllCars);
-  console.log(carList)
+
   useEffect(() => {
-    dispatch(admingetAllCars());
+    dispatch(admingetAllCars({pageSize : 100}));
   }, []);
 
   const filterCategory = (payload) => {

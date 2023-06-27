@@ -7,6 +7,7 @@ import DialogBox from "./DialogBox";
 import '../styles/carCard.css'
 import ImageWithLoading from "../../../components/ui/ImageWithLoading";
 import nullImage from "../../../assets/images/imagenotfound.jpeg"
+import { Link } from "react-router-dom";
 
 const CarCard = ({ car }) => {
   const getCategoryText = (category) => {
@@ -62,9 +63,11 @@ const CarCard = ({ car }) => {
                     <DialogBox onDelete={handleDelete} />
                   </div>
                   <div className="col-md-6">
+                    <Link to={`/admin/update/car/${car.id}`}>
                     <Button className="w-100" variant="outline-success">
                       Edit
                     </Button>
+                    </Link>
                   </div>
                 </div>
               </Card.Body>
