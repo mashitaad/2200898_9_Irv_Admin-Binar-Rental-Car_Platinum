@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonFilter from "./components/ButtonFilter";
 import CarCard from "./components/CarCard";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { admingetAllCars, carSelectors } from "../../features/carSlice";
 import SideBar from "../../components/layout/SideBar";
 import LoadingSpiner from "../../components/ui/LoadingSpiner";
@@ -44,7 +44,7 @@ const CarlistPage = () => {
             </h1>
           </Col>
           <Col className="text-end">
-            <Link className="btn btn-sm btn-primary">
+            <Link to={"/admin/add/car"} className="btn btn-sm btn-primary">
               <BsPlusLg className="me-2 mb-1 text-light" />
               Add New Car
             </Link>

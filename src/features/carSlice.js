@@ -47,6 +47,33 @@ export const adminGetCarById = createAsyncThunk("car/getCar", async (id) => {
   }
 });
 
+
+export const adminAddCar = createAsyncThunk(
+  "car/add",
+  async (params = {}, { rejectWithValue }) => {
+    const apiUrl = config.apiBaseUrl;
+    const token = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
+    try {
+      const response = await axios.post(apiUrl + "/admin/car", params, {
+        headers: {
+          "content-type": "multipart/form-data",
+          access_token: token,
+        },
+      });
+
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const carSlice = createSlice({
   name: "car",
   initialState: {
@@ -68,6 +95,13 @@ const carSlice = createSlice({
       })
       .addCase(adminGetCarById.pending, (state, action) => {
         state.loading = false;
+      })
+      .addCase(adminAddCar.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.loading = false
+      })
+      .addCase(adminAddCar.pending, (state, action) => {
+        state.loading = true;
       });
   },
 });
