@@ -3,6 +3,7 @@ import { Card, Col, Button } from "react-bootstrap";
 import { BsPeople } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { format } from "date-fns";
+import DialogBox from "./DialogBox";
 
 const CarCard = ({ car }) => {
   const getCategoryText = (category) => {
@@ -19,6 +20,10 @@ const CarCard = ({ car }) => {
     return format(new Date(date), "d MMMM yyyy, HH:mm");
   };
 
+  const handleDelete = () => {
+    // Logika penghapusan data atau tindakan lainnya
+    console.log("Delete car:", car);
+  };
   return (
     <Col md={4} className="mb-3">
       <Card className="custom-card shadow">
@@ -34,9 +39,7 @@ const CarCard = ({ car }) => {
           </Card.Text>
           <div className="row justify-content-between">
             <div className="col-md-6">
-              <Button className="w-100" variant="outline-danger">
-                Delete
-              </Button>
+              <DialogBox onDelete={handleDelete} />
             </div>
             <div className="col-md-6">
               <Button className="w-100" variant="outline-success">
