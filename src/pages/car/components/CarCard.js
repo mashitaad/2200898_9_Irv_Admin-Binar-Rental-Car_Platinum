@@ -1,17 +1,15 @@
 import React from "react";
-import { Card, Col, Button, Container, Row } from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
 import { BsPeople } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { format } from "date-fns";
 import DialogBox from "./DialogBox";
-import "../styles/carCard.css";
+import "../styles/carList.css";
 import ImageWithLoading from "../../../components/ui/ImageWithLoading";
 import nullImage from "../../../assets/images/imagenotfound.jpeg";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import config from "../../../config";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car, onDelete }) => {
   const getCategoryText = (category) => {
     const categoryMap = {
       small: "2-4 Orang",
@@ -22,32 +20,11 @@ const CarCard = ({ car }) => {
     return categoryMap[category] || "";
   };
 
-  const navigate = useNavigate();
   const formatDate = (date) => {
     return format(new Date(date), "d MMMM yyyy, HH:mm");
   };
-  const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("token="))
-    ?.split("=")[1];
-  const url = config.apiBaseUrl;
-  const handleDelete = async () => {
-    // https://bootcamp-rent-cars.herokuapp.com/admin/car/2650
-
-    try {
-      const response = await axios.delete(url + `/admin/car/${car.id}`, {
-        headers: {
-          access_token: token,
-        },
-      });
-      navigate("/admin/car/list");
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
-    <Col md="4">
+    <Col md="4" className="mb-3">
       <Card>
         {car.image === null ? (
           <div>
@@ -69,7 +46,7 @@ const CarCard = ({ car }) => {
           </Card.Text>
           <div className="row justify-content-between button-card">
             <div className="col-md-6">
-              <DialogBox onDelete={handleDelete} />
+              <DialogBox onDelete={onDelete} />
             </div>
             <div className="col-md-6">
               <Link to={`/admin/update/car/${car.id}`}>
