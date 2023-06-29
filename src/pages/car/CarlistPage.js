@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import ButtonFilter from "./components/ButtonFilter";
 import CarCard from "./components/CarCard";
 import { Row, Col } from "react-bootstrap";
-import { admingetAllCars, carSelectors } from "../../features/carSlice";
+import {
+  admingetAllCars,
+  carSelectors,
+  adminDeleteCar,
+} from "../../features/carSlice";
 import SideBar from "../../components/layout/SideBar";
 import LoadingSpiner from "../../components/ui/LoadingSpiner";
 import { BsPlusLg } from "react-icons/bs";
@@ -16,12 +20,25 @@ const CarlistPage = () => {
   const carList = useSelector(carSelectors.selectAllCars);
 
   useEffect(() => {
-    dispatch(admingetAllCars({pageSize : 100}));
+    dispatch(admingetAllCars({ pageSize: 100 }));
   }, []);
 
   const filterCategory = (payload) => {
     setSelectedCategory(payload);
     dispatch(admingetAllCars({ category: payload }));
+  };
+
+  const handleDelete = (carId) => {
+    dispatch(adminDeleteCar(carId))
+      .then(() => {
+        // Refresh data setelah berhasil menghapus
+        dispatch(
+          admingetAllCars({ pageSize: 100, category: selectedCategory })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -55,19 +72,22 @@ const CarlistPage = () => {
           style={{ marginBottom: "24px" }}
         />
 
-            
         <div className="flex-wrap mt-3">
           <div className="container-car">
-          <Row>
-
-          {loading ? (
-            <LoadingSpiner />
-            ) : (
-              
-              carList?.cars?.map((car) => <CarCard key={car.id} car={car} />)
+            <Row>
+              {loading ? (
+                <LoadingSpiner />
+              ) : (
+                carList?.cars?.map((car) => (
+                  <CarCard
+                    key={car.id}
+                    car={car}
+                    onDelete={() => handleDelete(car.id)}
+                  />
+                ))
               )}
-              </Row>
-              </div>
+            </Row>
+          </div>
         </div>
       </SideBar>
     </>

@@ -47,15 +47,14 @@ export const adminGetCarById = createAsyncThunk("car/getCar", async (id) => {
   }
 });
 
-
 export const adminAddCar = createAsyncThunk(
   "car/add",
   async (params = {}, { rejectWithValue }) => {
     const apiUrl = config.apiBaseUrl;
     const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("token="))
-    ?.split("=")[1];
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
     try {
       const response = await axios.post(apiUrl + "/admin/car", params, {
         headers: {
@@ -79,9 +78,9 @@ export const adminUpdateCar = createAsyncThunk(
   async ({ id, params }, { rejectWithValue }) => {
     const apiUrl = config.apiBaseUrl;
     const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("token="))
-    ?.split("=")[1];
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
     try {
       const response = await axios.put(apiUrl + `/admin/car/${id}`, params, {
         headers: {
@@ -91,6 +90,31 @@ export const adminUpdateCar = createAsyncThunk(
       });
 
       return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const adminDeleteCar = createAsyncThunk(
+  "car/delete",
+  async (id, { rejectWithValue }) => {
+    const apiUrl = config.apiBaseUrl;
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+    try {
+      await axios.delete(apiUrl + `/admin/car/${id}`, {
+        headers: {
+          access_token: token,
+        },
+      });
+
+      return id;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -124,17 +148,28 @@ const carSlice = createSlice({
       })
       .addCase(adminAddCar.fulfilled, (state, action) => {
         state.data = action.payload;
-        state.loading = false
+        state.loading = false;
       })
       .addCase(adminAddCar.pending, (state, action) => {
         state.loading = true;
-      }) 
+      })
       .addCase(adminUpdateCar.fulfilled, (state, action) => {
         state.data = action.payload;
-        state.loading = false
+        state.loading = false;
       })
       .addCase(adminUpdateCar.pending, (state, action) => {
         state.loading = true;
+      })
+      .addCase(adminDeleteCar.fulfilled, (state, action) => {
+        const deletedCarId = action.payload;
+        delete state.data[deletedCarId];
+        state.loading = false;
+      })
+      .addCase(adminDeleteCar.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(adminDeleteCar.rejected, (state, action) => {
+        state.loading = false;
       });
   },
 });
