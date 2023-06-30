@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -40,17 +41,53 @@ const users = [
   { date: "28", amount_car_rented: 43 },
   { date: "29", amount_car_rented: 24 },
   { date: "30", amount_car_rented: 93 },
+  
 ];
 
+
+
+
+
+
 function Chart() {
+
+  const [dataOrder, setDataOrder ] = useState([])
+  useEffect(() =>  {
+    getData()
+  }, [])
+  const token = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
+  
+
+
+    
+  const getData = async () => {
+    const response = await axios.get(`https://bootcamp-rent-cars.herokuapp.com/admin/order/reports?from=2023-06-01&until=2023-06-28`, {
+      headers: {
+        access_token: token
+      }
+    }
+  
+    )
+
+    // console.log(response.data)
+    setDataOrder(response.data)
+    return response.data
+  
+  }
+
+
+  console.log(dataOrder)
   return (
     <div className='App' style={{ padding: "5rem 0" }}>
       <Bar
         data={{
-          labels: users.map(user => user.date),
+          labels: dataOrder.map(user => user.day),
           datasets: [
             {
-              data: users.map(user => user.amount_car_rented),
+              data: dataOrder.map(user => user.orderCount),
               backgroundColor: "rgba(88, 107, 144, 1)",
             },
           ]

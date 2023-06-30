@@ -8,6 +8,8 @@ import '../styles/carCard.css'
 import ImageWithLoading from "../../../components/ui/ImageWithLoading";
 import nullImage from "../../../assets/images/imagenotfound.jpeg"
 import { Link } from "react-router-dom";
+import config from "../../../config";
+import axios from "axios";
 
 const CarCard = ({ car }) => {
   const getCategoryText = (category) => {
@@ -24,9 +26,21 @@ const CarCard = ({ car }) => {
     return format(new Date(date), "d MMMM yyyy, HH:mm");
   };
 
-  const handleDelete = () => {
+  const handleDelete =  async  () => {
     // Logika penghapusan data atau tindakan lainnya
-    console.log("Delete car:", car);
+
+    const url = config.apiBaseUrl
+    const token = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
+    const response = await axios.delete(url + `/admin/car/${car.id}`, {
+      headers: {
+        access_token :token
+      }
+    })
+    return response
+   
   };
   return (
           <Col md='4'>

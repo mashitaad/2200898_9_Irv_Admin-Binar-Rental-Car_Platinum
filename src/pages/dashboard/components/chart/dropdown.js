@@ -2,7 +2,7 @@ import React from 'react';
 
 function Dropdown() {
   const options = [
-    { value: 'option1', label: 'June - 2022' },
+    { value: {stardate : "2023-06-01", finishDate : "2023-06-30"}, label: 'June - 2022' },
     { value: 'option2', label: 'Option 2' },
     { value: 'option3', label: 'Option 3' },
     { value: 'option4', label: 'Option 4' },
