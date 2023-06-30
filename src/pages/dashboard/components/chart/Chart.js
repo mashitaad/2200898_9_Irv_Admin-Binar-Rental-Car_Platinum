@@ -49,7 +49,7 @@ const users = [
 
 
 
-function Chart() {
+function Chart({dataDate}) {
 
   const [dataOrder, setDataOrder ] = useState([])
   useEffect(() =>  {
@@ -60,11 +60,12 @@ function Chart() {
     .find((row) => row.startsWith("token="))
     ?.split("=")[1];
   
+const startDate = '2022-01-01'
+const finishDate = '2022-01-31'
 
 
-    
   const getData = async () => {
-    const response = await axios.get(`https://bootcamp-rent-cars.herokuapp.com/admin/order/reports?from=2023-06-01&until=2023-06-28`, {
+    const response = await axios.get(`https://bootcamp-rent-cars.herokuapp.com/admin/order/reports?from=${startDate}&until=${finishDate}`, {
       headers: {
         access_token: token
       }

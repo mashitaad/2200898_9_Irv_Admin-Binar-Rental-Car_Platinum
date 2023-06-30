@@ -27,7 +27,7 @@ const CarCard = ({ car, onDelete }) => {
   };
   return (
     <Col md="4" className="mb-3">
-      <Card>
+      <Card className="image-list">
         {car.image === null ? (
           <div>
             <ImageWithLoading src={nullImage} alt={"null"} />
