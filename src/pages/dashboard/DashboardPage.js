@@ -29,7 +29,7 @@ export default function DashboardPage() {
           }}>Rented Car Data Visualization</h1>
         </div>
         <p>Month</p>
-        <Dropdown />
+        <Dropdown/>
         <div style={{ marginTop: '-20px' }}> {/* Menambahkan margin top sebesar 53px */}
           <Chart />
         </div>
