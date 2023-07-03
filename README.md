@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+## Langkah - langkah untuk mengakses website admin
+#### Kami akan menjelaskan langkah - langkah untuk mengakses website admin, berikut langkah- langkah yang kami jelaskan : 
+1. Admin diminta untuk melakukan login terlebih dahulu,
+2. Untuk melakukan konfirmasi pemesanan admin dapat menekan bagian "ORDER" pada dashboard, dan akan menampilkan halaman website seperti dibawah ini,
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+   ![Screenshot (1464)](https://github.com/mashitaad/2200898_9_Irv_Public-Binar-Rental-Car_Platinum/assets/87978863/b6b673b4-d87d-4efe-845f-7bcea9394f1e)
 
-## Available Scripts
+   atau cara kedua adalah admin dapat melihat pesanan dari dashboard utama,
 
-In the project directory, you can run:
+   ![Screenshot (1466)](https://github.com/mashitaad/2200898_9_Irv_Public-Binar-Rental-Car_Platinum/assets/87978863/07b1d895-e36a-48d5-a8f5-dd6f7e1cd332)
+   
+4. Langkah selanjutnya adalah admin dapat menekan button "Lihat Detail", website akan beralih pada halaman ini,
 
-### `npm start`
+   ![Screenshot (1458)](https://github.com/mashitaad/2200898_9_Irv_Public-Binar-Rental-Car_Platinum/assets/87978863/89a7bd93-8cba-43e4-840c-8a285960d87e)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   Pada halaman ini admin dapat menolak pesanan jika bukti pembayaran tidak sesuai atau admin dapat langsung mengonfirmasi pembayaran dengan menekan button "Konfirmasi          Pembayaran", setelah menekan button tersebut akan muncul pop up penekanan seperti dibawah,
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ![Screenshot (1459)](https://github.com/mashitaad/2200898_9_Irv_Public-Binar-Rental-Car_Platinum/assets/87978863/96c26f40-f0d0-43f0-896f-66cd324d147d)
 
-### `npm test`
+   Jika admin menekan "Ya" maka akan muncul pop up berikut:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ![Screenshot (1460)](https://github.com/mashitaad/2200898_9_Irv_Public-Binar-Rental-Car_Platinum/assets/87978863/fc0aa16e-199a-44a9-821c-e97ef7cefa70)
