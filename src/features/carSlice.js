@@ -62,7 +62,7 @@ export const adminAddCar = createAsyncThunk(
           access_token: token,
         },
       });
-
+      
       return response.data;
     } catch (err) {
       if (!err.response) {

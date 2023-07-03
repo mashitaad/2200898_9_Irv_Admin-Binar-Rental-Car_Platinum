@@ -8,6 +8,8 @@ import "../styles/carList.css";
 import ImageWithLoading from "../../../components/ui/ImageWithLoading";
 import nullImage from "../../../assets/images/imagenotfound.jpeg";
 import { Link } from "react-router-dom";
+import config from "../../../config";
+import axios from "axios";
 
 const CarCard = ({ car, onDelete }) => {
   const getCategoryText = (category) => {
@@ -25,7 +27,7 @@ const CarCard = ({ car, onDelete }) => {
   };
   return (
     <Col md="4" className="mb-3">
-      <Card>
+      <Card className="image-list">
         {car.image === null ? (
           <div>
             <ImageWithLoading src={nullImage} alt={"null"} />

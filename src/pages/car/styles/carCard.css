@@ -6,12 +6,6 @@
     grid-gap: 55px !important;
 }
 
-.card img {
-    height: 20vh ;
-    width: 100%;
-    object-fit: contain;
-    margin-top: 10%;
-}
 
 .card-text {
     margin-left: 0% !important;

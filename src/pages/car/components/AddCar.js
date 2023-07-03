@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import React, { useState } from "react";
 import '../styles/addcar.css'
+import fiUpload from "../../../assets/icons/fi_upload.png"
+import { Link } from "react-router-dom";
 
 const AddCar = (props) => {
   const [form, setForm] = useState({
@@ -40,10 +42,16 @@ const AddCar = (props) => {
 
   return (
     <div>
-      <Breadcrumb>
-        <Breadcrumb.Item href="#">Cars</Breadcrumb.Item>
-        <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+      <Breadcrumb >
+        <Breadcrumb.Item >
+        <Link to={`/admin/car/list`} style={{color:"black", textDecoration:"none", fontWeight:"bold"}}>
+         Cars
+        </Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item >
+        <Link to={`/admin/car/list`} style={{color:"black", textDecoration:"none", fontWeight:"bold"}}>
           List Car
+        </Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Add New Car</Breadcrumb.Item>
       </Breadcrumb>
@@ -58,11 +66,12 @@ const AddCar = (props) => {
           props.onSubmit(form);
         }}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
-              Nama/Tipe Mobil
+            <Form.Label column sm="2" className="labelAddCar" required>
+              Nama/Tipe Mobil<span class="text-danger">*</span>
             </Form.Label>
             <Col sm="10">
               <Form.Control
+                className="textInput"
                 style={{ width: "350px" }}
                 type="input"
                 placeholder="Input Nama/Tipe Mobil"
@@ -77,14 +86,15 @@ const AddCar = (props) => {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
-              Harga
+            <Form.Label column sm="2" className="labelAddCar">
+              Harga<span class="text-danger">*</span>
             </Form.Label>
             <Col sm="10">
               <Form.Control
+               className="textInput"
                 style={{ width: "350px" }}
                 type="input"
-                placeholder="Input Harga"
+                placeholder="Input Harga Sewa Mobil"
                 value={form.price}
                 onChange={(e) =>
                   setForm({
@@ -96,13 +106,24 @@ const AddCar = (props) => {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
-              Foto
+            <Form.Label column sm="2" className="labelAddCar">
+              Foto<span class="text-danger">*</span>
             </Form.Label>
             <Col sm="10">
-              <input type="file" onChange={handleFileInputChange} />
+            
+              <input type="file"  onChange={handleFileInputChange} style={{ width: "350px" }} class="form-control"
+             src={{fiUpload}}
+              />
+            
+              <label style={{fontFamily: "Rubik",
+                              fontSize: "10px",
+                              fontWeight: "300",
+                              lineHeight: "14px"}}>
+              File Size max 2MB </label>
+
               {previewSource && (
                 <img
+                className="textInput"
                   src={previewSource}
                   alt="Preview"
                   style={{
@@ -115,11 +136,12 @@ const AddCar = (props) => {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
-              Kategori
+            <Form.Label column sm="2" className="labelAddCar">
+              Kategori<span class="text-danger">*</span>
             </Form.Label>
             <Col sm="10">
               <Form.Select
+               className="textInput"
                 style={{ width: "350px" }}
                 aria-label="Default select example"
                 value={form.category}
@@ -138,13 +160,13 @@ const AddCar = (props) => {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
+            <Form.Label column sm="2" className="labelAddCar">
               Created at
             </Form.Label>
-            <Col sm="10">-</Col>
+            <Col sm="10"  >-</Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
+            <Form.Label column sm="2" className="labelAddCar">
               Update at
             </Form.Label>
             <Col sm="10">-</Col>
