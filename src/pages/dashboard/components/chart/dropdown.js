@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSelectedDate } from '../../../../features/dropdownSlice';
 import axios from 'axios';
 import config from '../../../../config'
 
-function Dropdown(props) {
-  const selectedDate = useSelector(state => state.dropdown.selectedDate);
+function Dropdown() {
   const [date, setDate] = useState({
     from: "",
     until: ""
@@ -66,7 +65,7 @@ function Dropdown(props) {
       from,
       until
     });
-   
+
   }
 
   const token = document.cookie
@@ -74,32 +73,34 @@ function Dropdown(props) {
     .find((row) => row.startsWith("token="))
     ?.split("=")[1];
 
-    const url = config.apiBaseUrl
+  const url = config.apiBaseUrl
 
-  const getData = async ( params = {from : "2023-06-01",
-  until: "2023-06-30"}) => {
-    const response = await axios.get( url + "/admin/order/reports", {
+  const getData = async (params = {
+    from: "2023-06-01",
+    until: "2023-06-30"
+  }) => {
+    const response = await axios.get(url + "/admin/order/reports", {
       params,
       headers: {
         access_token: token
-        
+
       }
     }
-  
+
     )
     dispatch(setSelectedDate(response));
     // console.log(response.data)
     // setDataOrder(response.data)
     return response.data
-  
+
   }
 
   useEffect(() => {
     getData()
-  },[])
+  }, [])
 
   const handleGoButtonClick = async (params) => {
-   await getData(params = {from: date.from, until: date.until})
+    await getData(params = { from: date.from, until: date.until })
   }
   return (
     <div style={{ display: 'flex' }}>
@@ -129,7 +130,6 @@ function Dropdown(props) {
             lineHeight: '18px',
             color: '#151515',
           }}
-          value={selectedDate}
           onChange={handleDateChange}
         >
           {options.map(option => (
