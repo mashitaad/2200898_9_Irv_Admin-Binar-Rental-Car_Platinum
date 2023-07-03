@@ -89,8 +89,6 @@ function Dropdown() {
 
     )
     dispatch(setSelectedDate(response));
-    // console.log(response.data)
-    // setDataOrder(response.data)
     return response.data
 
   }
@@ -161,8 +159,5 @@ function Dropdown() {
     </div>
   );
 }
-// Dropdown.defaultProps = {
-//   onSubmit: () => {}
-// }
 
 export default Dropdown;
