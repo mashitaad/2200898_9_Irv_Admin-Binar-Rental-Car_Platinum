@@ -1,36 +1,36 @@
-import React from "react";
-import { Card, Col, Button } from "react-bootstrap";
-import { BsPeople } from "react-icons/bs";
-import { IoMdTime } from "react-icons/io";
-import { format } from "date-fns";
-import DialogBox from "./DialogBox";
-import "../styles/carList.css";
-import ImageWithLoading from "../../../components/ui/ImageWithLoading";
-import nullImage from "../../../assets/images/imagenotfound.jpeg";
-import { Link } from "react-router-dom";
-import config from "../../../config";
-import axios from "axios";
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { Card, Col, Button } from 'react-bootstrap';
+import { BsPeople } from 'react-icons/bs';
+import { IoMdTime } from 'react-icons/io';
+import { format } from 'date-fns';
+import DialogBox from './DialogBox';
+import '../styles/carList.css';
+import ImageWithLoading from '../../../components/ui/ImageWithLoading';
+import nullImage from '../../../assets/images/imagenotfound.jpeg';
+import { Link } from 'react-router-dom';
 
 const CarCard = ({ car, onDelete }) => {
   const getCategoryText = (category) => {
     const categoryMap = {
-      small: "2-4 Orang",
-      medium: "4 - 6 Orang",
-      large: "6 - 8 Orang",
+      small: '2-4 Orang',
+      medium: '4 - 6 Orang',
+      large: '6 - 8 Orang'
     };
 
-    return categoryMap[category] || "";
+    return categoryMap[category] || '';
   };
 
   const formatDate = (date) => {
-    return format(new Date(date), "d MMMM yyyy, HH:mm");
+    return format(new Date(date), 'd MMMM yyyy, HH:mm');
   };
   return (
     <Col md="4" className="mb-3">
       <Card className="image-list">
         {car.image === null ? (
           <div>
-            <ImageWithLoading src={nullImage} alt={"null"} />
+            <ImageWithLoading src={nullImage} alt={'null'} />
           </div>
         ) : (
           <div>

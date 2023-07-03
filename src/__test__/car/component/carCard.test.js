@@ -11,20 +11,18 @@ describe('CarCard Component', () => {
       price: 100000,
       category: 'small',
       image: 'car.jpg',
-      updatedAt: '2023-07-01T10:00:00Z',
+      updatedAt: '2023-07-01T10:00:00Z'
     };
     render(
-        <BrowserRouter>
-          <CarCard car={car} />
-        </BrowserRouter>
-      );
-
+      <BrowserRouter>
+        <CarCard car={car} />
+      </BrowserRouter>
+    );
 
     expect(screen.getByText('Car 1')).toBeInTheDocument();
     expect(screen.getByText('Rp 100000 / hari')).toBeInTheDocument();
     expect(screen.getByText('2-4 Orang')).toBeInTheDocument();
-  
-   
+
     const image = screen.getByAltText('Car 1');
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', 'car.jpg');
@@ -37,13 +35,13 @@ describe('CarCard Component', () => {
       price: 100000,
       category: 'small',
       image: null,
-      updatedAt: '2023-07-01T10:00:00Z',
+      updatedAt: '2023-07-01T10:00:00Z'
     };
     render(
-        <BrowserRouter>
-          <CarCard car={car} />
-        </BrowserRouter>
-      );
+      <BrowserRouter>
+        <CarCard car={car} />
+      </BrowserRouter>
+    );
 
     const defaultImage = screen.getByAltText('null');
     expect(defaultImage).toBeInTheDocument();

@@ -6,7 +6,6 @@ test('renders ButtonFilter component', () => {
   const handleClick = jest.fn();
   const { getByText } = render(<ButtonFilter handleClick={handleClick} />);
 
-
   const allButton = getByText('All');
   expect(allButton).toBeInTheDocument();
 
@@ -18,7 +17,6 @@ test('renders ButtonFilter component', () => {
 
   const largeButton = getByText('6 - 8 people');
   expect(largeButton).toBeInTheDocument();
-
 
   fireEvent.click(allButton);
   fireEvent.click(smallButton);
