@@ -1,20 +1,15 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import React, { useCallback, useEffect, useState } from 'react';
+import { Col, Form, Pagination, Row, Table } from 'react-bootstrap';
+import { usePagination, useSortBy, useTable } from 'react-table';
+import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
+import '../../styles/basictable.css';
+const BasicTable = ({ columns, data, fetchData, loading, totalPage, totalData }) => {
+  const [pageNumbers, setPageNumbers] = useState([]);
 
-import React, { useCallback, useEffect, useState } from "react"
-import { Col, Form, Pagination, Row, Table } from "react-bootstrap"
-import { usePagination, useSortBy, useTable } from "react-table"
-import { FaCaretUp, FaCaretDown } from "react-icons/fa"
-import '../../styles/basictable.css'
-const BasicTable = ({
-  columns,
-  data,
-  fetchData,
-  loading,
-  totalPage,
-  totalData,
-}) => {
-  const [pageNumbers, setPageNumbers] = useState([])
-
-  const perPages = [10, 25, 50, 100]
+  const perPages = [10, 25, 50, 100];
 
   const {
     getTableProps,
@@ -30,7 +25,7 @@ const BasicTable = ({
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize, sortBy },
+    state: { pageIndex, pageSize, sortBy }
   } = useTable(
     {
       columns,
@@ -38,153 +33,142 @@ const BasicTable = ({
       initialState: { pageIndex: 0 },
       manualPagination: true,
       manualSortBy: true,
-      pageCount: totalPage,
+      pageCount: totalPage
     },
     useSortBy,
     usePagination
-  )
+  );
   const initPageNumbers = useCallback((current, totalPage) => {
-    const pageNumbers = []
-    const shownPageNumbers = 9
-    let fromNumber = current
+    const pageNumbers = [];
+    const shownPageNumbers = 9;
+    let fromNumber = current;
 
-    let minPageNumber = totalPage - (shownPageNumbers - 1)
-    if (shownPageNumbers > totalPage) minPageNumber = 1
+    let minPageNumber = totalPage - (shownPageNumbers - 1);
+    if (shownPageNumbers > totalPage) minPageNumber = 1;
 
     if (current > minPageNumber) {
-      fromNumber = Math.min(current, minPageNumber)
+      fromNumber = Math.min(current, minPageNumber);
     }
 
     for (let i = fromNumber; i <= totalPage; i++) {
       if (pageNumbers.length < shownPageNumbers) {
-        pageNumbers.push(i)
+        pageNumbers.push(i);
       } else {
         pageNumbers.push({
           ellipsis: true,
-          page: totalPage - shownPageNumbers,
-        })
-        pageNumbers.push(totalPage)
-        break
+          page: totalPage - shownPageNumbers
+        });
+        pageNumbers.push(totalPage);
+        break;
       }
     }
 
-    if (
-      totalPage > shownPageNumbers &&
-      !pageNumbers.includes(shownPageNumbers)
-    ) {
+    if (totalPage > shownPageNumbers && !pageNumbers.includes(shownPageNumbers)) {
       pageNumbers.unshift({
         ellipsis: true,
-        page: pageNumbers.length,
-      })
-      pageNumbers.unshift(1)
+        page: pageNumbers.length
+      });
+      pageNumbers.unshift(1);
     }
 
-    setPageNumbers(pageNumbers)
-  }, [])
+    setPageNumbers(pageNumbers);
+  }, []);
 
   useEffect(() => {
-    fetchData({ pageIndex, pageSize, sortBy })
-  }, [fetchData, pageIndex, pageSize, sortBy])
+    fetchData({ pageIndex, pageSize, sortBy });
+  }, [fetchData, pageIndex, pageSize, sortBy]);
 
   useEffect(() => {
-    initPageNumbers(pageIndex + 1, pageCount)
-  }, [initPageNumbers, pageIndex, pageCount])
+    initPageNumbers(pageIndex + 1, pageCount);
+  }, [initPageNumbers, pageIndex, pageCount]);
 
   const onChangePage = (page) => {
-    gotoPage(page - 1)
-  }
+    gotoPage(page - 1);
+  };
 
   const PagePrev = (props) => {
     return (
       <li
-        className={props.disabled === true ? "page-item disabled" : "page-item"}
-        onClick={props.onClick}
-      >
+        className={props.disabled === true ? 'page-item disabled' : 'page-item'}
+        onClick={props.onClick}>
         <a className="page-link" role="button" href="#">
           <i className="fas fa-angle-left"></i>
           <span className="sr-only">Prev</span>
         </a>
       </li>
-    )
-  }
+    );
+  };
 
   const PageNext = (props) => {
     return (
       <li
-        className={props.disabled === true ? "page-item disabled" : "page-item"}
-        onClick={props.onClick}
-      >
+        className={props.disabled === true ? 'page-item disabled' : 'page-item'}
+        onClick={props.onClick}>
         <a className="page-link" role="button" href="#">
           <i className="fas fa-angle-right"></i>
           <span className="sr-only">Next</span>
         </a>
       </li>
-    )
-  }
+    );
+  };
 
   const PaginationComponent = () => {
-    const currentPage = pageIndex + 1
+    const currentPage = pageIndex + 1;
     return (
       <Pagination className="mb-0 float-end">
         <PagePrev disabled={!canPreviousPage} onClick={() => previousPage()} />
         {pageNumbers.map((val, idx) => {
-          if (typeof val === "number") {
+          if (typeof val === 'number') {
             return (
               <Pagination.Item
                 key={idx}
                 active={currentPage === val}
-                onClick={() => onChangePage(val)}
-              >
+                onClick={() => onChangePage(val)}>
                 {val}
               </Pagination.Item>
-            )
+            );
           } else {
-            return (
-              <Pagination.Ellipsis
-                key={idx}
-                onClick={() => onChangePage(val.page)}
-              />
-            )
+            return <Pagination.Ellipsis key={idx} onClick={() => onChangePage(val.page)} />;
           }
         })}
         <PageNext disabled={!canNextPage} onClick={() => nextPage()} />
       </Pagination>
-    )
-  }
+    );
+  };
 
   const Footer = (props) => {
-    const currentPage = pageIndex + 1
-    const perPage = pageSize
-    let from = 1
-    let to = perPage
+    const currentPage = pageIndex + 1;
+    const perPage = pageSize;
+    let from = 1;
+    let to = perPage;
 
     if (currentPage > 1) {
-      from = perPage * (currentPage - 1) + 1
-      to = perPage * currentPage
+      from = perPage * (currentPage - 1) + 1;
+      to = perPage * currentPage;
     }
-    if (to > totalData) to = totalData
+    if (to > totalData) to = totalData;
 
     return (
-      <div {...props} style={{ fontWeight: "400" }}>
-        Showing <span style={{ fontWeight: "500" }}>{from}</span> -{" "}
-        <span style={{ fontWeight: "500" }}>{to}</span> of{" "}
-        <span style={{ fontWeight: "500" }}>~{totalData} Data</span>
+      <div {...props} style={{ fontWeight: '400' }}>
+        Showing <span style={{ fontWeight: '500' }}>{from}</span> -{' '}
+        <span style={{ fontWeight: '500' }}>{to}</span> of{' '}
+        <span style={{ fontWeight: '500' }}>~{totalData} Data</span>
       </div>
-    )
-  }
+    );
+  };
 
   const TableInformation = (props) => {
     return (
       <div {...props}>
         <span>
-          Page{" "}
+          Page{' '}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
+          </strong>{' '}
         </span>
       </div>
-    )
-  }
+    );
+  };
   return (
     <>
       <Table striped bordered responsive {...getTableProps()}>
@@ -194,17 +178,17 @@ const BasicTable = ({
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {/* <th {...column.getHeaderProps()}> */}
-                  {column.render("Header")}
-                  <span style={{ marginLeft: "10px", position: "relative" }}>
+                  {column.render('Header')}
+                  <span style={{ marginLeft: '10px', position: 'relative' }}>
                     {column.isSorted ? (
                       column.isSortedDesc ? (
-                        <span style={{ position: "relative" }}>
-                          {" "}
+                        <span style={{ position: 'relative' }}>
+                          {' '}
                           <FaCaretUp />
                         </span>
                       ) : (
-                        <span style={{ position: "relative" }}>
-                          {" "}
+                        <span style={{ position: 'relative' }}>
+                          {' '}
                           <FaCaretDown />
                         </span>
                       )
@@ -219,14 +203,14 @@ const BasicTable = ({
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row, i) => {
-            prepareRow(row)
+            prepareRow(row);
             return (
               <tr key={i} {...row.getRowProps()}>
                 {row.cells.map((cell, cellIdx) => {
-                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
                 })}
               </tr>
-            )
+            );
           })}
           {loading ? (
             <tr>
@@ -234,9 +218,12 @@ const BasicTable = ({
             </tr>
           ) : (
             <tr>
-
               <td colSpan={columns?.length}>
-                {totalData > 0 ? <Footer /> : <div className="d-flex justify-content-center fw-bold fst-italic">List Empty</div>}
+                {totalData > 0 ? (
+                  <Footer />
+                ) : (
+                  <div className="d-flex justify-content-center fw-bold fst-italic">List Empty</div>
+                )}
               </td>
             </tr>
           )}
@@ -249,19 +236,18 @@ const BasicTable = ({
             as="select"
             className="d-inline-block"
             style={{
-              width: "auto",
-              marginRight: "1rem",
-              position: "relative",
+              width: 'auto',
+              marginRight: '1rem',
+              position: 'relative'
             }}
             size="sm"
             value={pageSize}
             onChange={(e) => {
-              let value = e.target.value
+              let value = e.target.value;
               if (!isNaN(value)) {
-                setPageSize(Number(e.target.value))
+                setPageSize(Number(e.target.value));
               }
-            }}
-          >
+            }}>
             {perPages.map((pageSize, i) => (
               <option key={i} value={pageSize}>
                 {pageSize}
@@ -276,7 +262,7 @@ const BasicTable = ({
         <Col md={6}>{pageCount > 1 && <PaginationComponent />}</Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default BasicTable
+export default BasicTable;

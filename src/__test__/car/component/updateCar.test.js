@@ -10,7 +10,7 @@ describe('UpdateCar Component', () => {
       category: 'small',
       image: 'image.png',
       createdAt: '2023-07-01T10:00:00Z',
-      updatedAt: '2023-07-02T10:00:00Z',
+      updatedAt: '2023-07-02T10:00:00Z'
     };
 
     render(<UpdateCar data={mockData} onSubmit={() => {}} />);
@@ -39,7 +39,7 @@ describe('UpdateCar Component', () => {
       category: 'small',
       image: 'image.png',
       createdAt: '2023-07-01T10:00:00Z',
-      updatedAt: '2023-07-02T10:00:00Z',
+      updatedAt: '2023-07-02T10:00:00Z'
     };
 
     render(<UpdateCar data={mockData} onSubmit={mockOnSubmit} />);
@@ -52,7 +52,7 @@ describe('UpdateCar Component', () => {
       name: 'Car Name',
       price: '1000',
       category: 'small',
-      image: 'image.png',
+      image: 'image.png'
     });
   });
 });

@@ -1,25 +1,26 @@
-import { Card, Button } from "react-bootstrap";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import React, { useEffect, useState } from "react";
-import '../styles/addcar.css'
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { adminGetCarById, carSelectors } from "../../../features/carSlice";
+/* eslint-disable react/prop-types */
+import { Card, Button } from 'react-bootstrap';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import React, { useEffect, useState } from 'react';
+import '../styles/addcar.css';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminGetCarById, carSelectors } from '../../../features/carSlice';
 import moment from 'moment';
 import 'moment/locale/id';
-moment.locale('id')
+moment.locale('id');
 
 const UpdateCar = (props) => {
-    const dispatch = useDispatch()
-    const {id} = useParams()
-    const data = useSelector(carSelectors.selectCars)
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const data = useSelector(carSelectors.selectCars);
 
-    useEffect(() => {
-        dispatch(adminGetCarById(id))
-    }, [])
+  useEffect(() => {
+    dispatch(adminGetCarById(id));
+  }, []);
 
   const [form, setForm] = useState({
     name: '',
@@ -28,13 +29,13 @@ const UpdateCar = (props) => {
     status: false,
     image: ''
   });
-  const [previewSource, setPreviewSource] = useState("");
+  const [previewSource, setPreviewSource] = useState('');
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setForm({
       ...form,
-      image: file,
+      image: file
     });
     previewFile(file);
   };
@@ -48,43 +49,38 @@ const UpdateCar = (props) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    props.onSubmit(form)
-  }
+    e.preventDefault();
+    props.onSubmit(form);
+  };
 
   return (
     <div>
       <Breadcrumb>
         <Breadcrumb.Item href="#">Cars</Breadcrumb.Item>
-        <Breadcrumb.Item href="#">
-          Update Car
-        </Breadcrumb.Item>
+        <Breadcrumb.Item href="#">Update Car</Breadcrumb.Item>
         <Breadcrumb.Item active>Add New Car</Breadcrumb.Item>
       </Breadcrumb>
       <h2>Edit Car</h2>
-      <Card
-        body
-        style={{ width: "98%", height: "512px", marginBottom: "320px" }}
-        className=""
-      >
-        <Form onSubmit={(e) => {
-          e.preventDefault();
-          props.onSubmit(form);
-        }}>
+      <Card body style={{ width: '98%', height: '512px', marginBottom: '320px' }} className="">
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            props.onSubmit(form);
+          }}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Label column sm="2">
               Nama/Tipe Mobil
             </Form.Label>
             <Col sm="10">
               <Form.Control
-                style={{ width: "350px" }}
+                style={{ width: '350px' }}
                 type="input"
                 placeholder={data?.name}
                 value={form.name}
                 onChange={(e) =>
                   setForm({
                     ...form,
-                    name: e.target.value,
+                    name: e.target.value
                   })
                 }
               />
@@ -96,14 +92,14 @@ const UpdateCar = (props) => {
             </Form.Label>
             <Col sm="10">
               <Form.Control
-                style={{ width: "350px" }}
+                style={{ width: '350px' }}
                 type="input"
                 placeholder={data?.price}
                 value={form.price}
                 onChange={(e) =>
                   setForm({
                     ...form,
-                    price: e.target.value,
+                    price: e.target.value
                   })
                 }
               />
@@ -115,25 +111,27 @@ const UpdateCar = (props) => {
             </Form.Label>
             <Col sm="10">
               <input type="file" onChange={handleFileInputChange} />
-              {previewSource ?  (
+              {previewSource ? (
                 <img
                   src={previewSource}
                   alt="Preview"
                   style={{
-                    width: "200px",
-                    height: "200px",
-                    border: "1px solid #ccc",
+                    width: '200px',
+                    height: '200px',
+                    border: '1px solid #ccc'
                   }}
                 />
-              ) : (<img
-                src={data?.image}
-                alt="Preview"
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  border: "1px solid #ccc",
-                }}
-              />)}
+              ) : (
+                <img
+                  src={data?.image}
+                  alt="Preview"
+                  style={{
+                    width: '200px',
+                    height: '200px',
+                    border: '1px solid #ccc'
+                  }}
+                />
+              )}
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -142,16 +140,15 @@ const UpdateCar = (props) => {
             </Form.Label>
             <Col sm="10">
               <Form.Select
-                style={{ width: "350px" }}
+                style={{ width: '350px' }}
                 aria-label="Default select example"
                 value={form.category}
                 onChange={(e) =>
                   setForm({
                     ...form,
-                    category: e.target.value,
+                    category: e.target.value
                   })
-                }
-              >
+                }>
                 <option value={data?.category}>{data?.category}</option>
                 <option value="small">small</option>
                 <option value="medium">medium</option>
@@ -174,10 +171,12 @@ const UpdateCar = (props) => {
         </Form>
       </Card>
 
-          <div className="d-flex gap-3">
-            <Button variant="outline-primary">Cancel</Button>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>Save</Button>
-          </div>
+      <div className="d-flex gap-3">
+        <Button variant="outline-primary">Cancel</Button>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          Save
+        </Button>
+      </div>
     </div>
   );
 };

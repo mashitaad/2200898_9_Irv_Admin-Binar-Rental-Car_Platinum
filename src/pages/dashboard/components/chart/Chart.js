@@ -1,24 +1,29 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
-import {  useSelector } from 'react-redux';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Tooltip,
+  Legend
+} from 'chart.js';
+import { useSelector } from 'react-redux';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 function Chart() {
-
-  const dataOrder = useSelector(state => state.dropdown.selectedDate);
+  const dataOrder = useSelector((state) => state.dropdown.selectedDate);
   return (
-    
-    <div className='App' style={{ padding: "5rem 0" }}>
+    <div className="App" style={{ padding: '5rem 0' }}>
       <Bar
         data={{
-          labels: dataOrder?.data?.map(data => data.day),
+          labels: dataOrder?.data?.map((data) => data.day),
           datasets: [
             {
-              data: dataOrder?.data?.map(data => data.orderCount),
-              backgroundColor: "rgba(88, 107, 144, 1)",
-            },
+              data: dataOrder?.data?.map((data) => data.orderCount),
+              backgroundColor: 'rgba(88, 107, 144, 1)'
+            }
           ]
         }}
         options={{
@@ -29,24 +34,24 @@ function Chart() {
             y: {
               title: {
                 display: true,
-                text: "Amount of Car Rented",
+                text: 'Amount of Car Rented',
                 font: {
                   family: 'Arial',
                   style: 'normal',
                   weight: 400,
-                  size: 12,
+                  size: 12
                 }
-              },
+              }
             },
             x: {
               title: {
                 display: true,
-                text: "Date",
+                text: 'Date',
                 font: {
                   family: 'Arial',
                   style: 'normal',
                   weight: 400,
-                  size: 12,
+                  size: 12
                 }
               },
               type: 'category',
@@ -59,13 +64,13 @@ function Chart() {
                   return '';
                 }
               }
-            },
+            }
           },
           plugins: {
             legend: {
-              display: false, // Menyembunyikan legenda
-            },
-          },
+              display: false
+            }
+          }
         }}
       />
     </div>
@@ -73,4 +78,3 @@ function Chart() {
 }
 
 export default Chart;
-

@@ -12,7 +12,7 @@ const mockStore = configureStore([]);
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
-  useNavigate: jest.fn(),
+  useNavigate: jest.fn()
 }));
 
 describe('UpdateCarPage Component', () => {
@@ -29,10 +29,8 @@ describe('UpdateCarPage Component', () => {
     const store = mockStore({
       car: {
         loading: false,
-        data: {
-        
-        },
-      },
+        data: {}
+      }
     });
 
     render(
@@ -43,31 +41,22 @@ describe('UpdateCarPage Component', () => {
       </Provider>
     );
 
-  
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: 'Updated Car' } });
-    
 
-  
     fireEvent.click(screen.getByText('Update'));
 
-   
     expect(mockDispatch).toHaveBeenCalledWith(
       adminUpdateCar({ id: '1', params: { name: 'Updated Car' } })
     );
     expect(mockNavigate).toHaveBeenCalledWith('/admin/car/list');
-
-   
   });
 
-  
   test('handles empty form submission', () => {
     const store = mockStore({
       car: {
         loading: false,
-        data: {
-     
-        },
-      },
+        data: {}
+      }
     });
 
     render(
@@ -78,13 +67,9 @@ describe('UpdateCarPage Component', () => {
       </Provider>
     );
 
-   
     fireEvent.click(screen.getByText('Update'));
 
-  
     expect(mockDispatch).not.toHaveBeenCalled();
     expect(mockNavigate).not.toHaveBeenCalled();
-
-
   });
 });

@@ -6,13 +6,12 @@ import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import AddCarPage from '../../pages/car/AddCarPage';
 
-
 const initialState = {};
+// eslint-disable-next-line no-unused-vars
 function reducer(state = initialState, action) {
   return state;
 }
 const store = createStore(reducer);
-
 
 const mockHandleAddCar = jest.fn();
 
@@ -26,7 +25,6 @@ test('renders AddCarPage component', () => {
     </Provider>
   );
 
-
   const nameInput = getByLabelText('Nama/Tipe Mobil*');
   expect(nameInput).toBeInTheDocument();
 
@@ -39,22 +37,19 @@ test('renders AddCarPage component', () => {
   const categorySelect = getByLabelText('Kategori*');
   expect(categorySelect).toBeInTheDocument();
 
-
   const saveButton = getByText('Save');
   fireEvent.click(saveButton);
-
 
   expect(mockHandleAddCar).toHaveBeenCalledTimes(1);
 });
 
-
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useDispatch: () => mockHandleAddCar,
+  useDispatch: () => mockHandleAddCar
 }));
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => jest.fn(),
+  useNavigate: () => jest.fn()
 }));
 
 test('calls handleAddCar function when Save button is clicked', () => {
@@ -66,7 +61,6 @@ test('calls handleAddCar function when Save button is clicked', () => {
       </Router>
     </Provider>
   );
-
 
   const saveButton = getByText('Save');
   fireEvent.click(saveButton);

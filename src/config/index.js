@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable prettier/prettier */
 const config = {
     appName: process.env.REACT_APP_NAME,
     apiBaseUrl: process.env.REACT_APP_API_BASE_URL,

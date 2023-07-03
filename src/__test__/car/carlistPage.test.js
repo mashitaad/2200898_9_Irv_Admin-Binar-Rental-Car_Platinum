@@ -13,10 +13,10 @@ describe('CarlistPage Component', () => {
     const store = mockStore({
       loading: false,
       carList: [
-        { id: 1, name: "Car 1", category: "Category 1" },
-        { id: 2, name: "Car 2", category: "Category 2" },
-        { id: 3, name: "Car 3", category: "Category 1" },
-      ],
+        { id: 1, name: 'Car 1', category: 'Category 1' },
+        { id: 2, name: 'Car 2', category: 'Category 2' },
+        { id: 3, name: 'Car 3', category: 'Category 1' }
+      ]
     });
 
     render(
@@ -27,20 +27,17 @@ describe('CarlistPage Component', () => {
       </Provider>
     );
 
-    
     expect(screen.getByText('List Car')).toBeInTheDocument();
-    
   });
 
- 
   test('filters cars by category', () => {
     const store = mockStore({
       loading: false,
       carList: [
-        { id: 1, name: "Car 1", category: "Category 1" },
-        { id: 2, name: "Car 2", category: "Category 2" },
-        { id: 3, name: "Car 3", category: "Category 1" },
-      ],
+        { id: 1, name: 'Car 1', category: 'Category 1' },
+        { id: 2, name: 'Car 2', category: 'Category 2' },
+        { id: 3, name: 'Car 3', category: 'Category 1' }
+      ]
     });
 
     const handleFilterCategory = jest.fn();
@@ -53,24 +50,20 @@ describe('CarlistPage Component', () => {
       </Provider>
     );
 
-   
     fireEvent.click(screen.getByText('Filter Category 1'));
 
     expect(handleFilterCategory).toHaveBeenCalledTimes(1);
     expect(handleFilterCategory).toHaveBeenCalledWith('category1');
-
-   
   });
-
 
   test('deletes a car', () => {
     const store = mockStore({
       loading: false,
       carList: [
-        { id: 1, name: "Car 1", category: "Category 1" },
-        { id: 2, name: "Car 2", category: "Category 2" },
-        { id: 3, name: "Car 3", category: "Category 1" },
-      ],
+        { id: 1, name: 'Car 1', category: 'Category 1' },
+        { id: 2, name: 'Car 2', category: 'Category 2' },
+        { id: 3, name: 'Car 3', category: 'Category 1' }
+      ]
     });
 
     const handleDeleteCar = jest.fn();
@@ -86,7 +79,5 @@ describe('CarlistPage Component', () => {
     fireEvent.click(screen.getByTestId('delete-button'));
 
     expect(handleDeleteCar).toHaveBeenCalledTimes(1);
-
-  
   });
 });
